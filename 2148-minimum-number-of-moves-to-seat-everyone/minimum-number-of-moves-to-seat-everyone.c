@@ -1,55 +1,54 @@
-void merge(int a[],int low,int mid,int high)
-{
-    int i,j,k;
-    int n1=(mid-low+1);
-    int n2=(high-mid);
-    int leftarr[n1],rightarr[n2];
-    for(i=0;i<n1;i++)
-        leftarr[i]=a[low+i];
-    for(j=0;j<n2;j++)
-        rightarr[j]=a[mid+1+j];
-    i=j=0;
-    k=low;
-    while(i<n1 && j<n2)
-    {
-        if(leftarr[i]<=rightarr[j])
-        {
-            a[k]=leftarr[i++];
-        }
-        else
-        {
-            a[k]=rightarr[j++];
-        }
-        k++;
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+
+// Function to find the maximum value in the array
+int findMax(int arr[], int n) {
+    int max = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] > max)
+            max = arr[i];
     }
-    while (i < n1)
-    {
-        a[k++] = leftarr[i++];
-    }
-    while (j < n2)
-    {
-        a[k++] = rightarr[j++];
-    }
+    return max;
 }
 
-void mergesort(int a[],int low,int high)
-{
-    if(low<high)
-    {
-        int mid = low + (high-low)/2;
-        mergesort(a,low,mid);
-        mergesort(a,mid+1,high);
-        merge(a,low,mid,high);
+// Count Sort function
+void countSort(int arr[], int n) {
+    int max = findMax(arr, n);  // Find max value in array
+    int count[max + 1];         // Create a count array
+    int output[n];              // Output sorted array
+
+    // Initialize count array with 0
+    for (int i = 0; i <= max; i++)
+        count[i] = 0;
+
+    // Store count of occurrences
+    for (int i = 0; i < n; i++)
+        count[arr[i]]++;
+
+    // Update count array to store the position of elements
+    for (int i = 1; i <= max; i++)
+        count[i] += count[i - 1];
+
+    // Build output array
+    for (int i = n - 1; i >= 0; i--) {
+        output[count[arr[i]] - 1] = arr[i];
+        count[arr[i]]--;
     }
+
+    // Copy sorted elements back to original array
+    for (int i = 0; i < n; i++)
+        arr[i] = output[i];
 }
 
-int minMovesToSeat(int* seats, int n1, int* students, int n2)
-{
+// Function to compute minimum moves
+int minMovesToSeat(int* seats, int n1, int* students, int n2) {
     int minMoves = 0;
-    // Sorting both arrays using mergesort (O(n log n))
-    mergesort(seats,0,n1-1);
-    mergesort(students,0,n2-1);
-    // Calculating minimum moves
+    // Sorting both arrays using Count Sort (O(n + k))
+    countSort(seats, n1);
+    countSort(students, n2);
+
+    // Calculate minimum moves
     for (int i = 0; i < n1; i++) {
         minMoves += abs(seats[i] - students[i]);
     }
