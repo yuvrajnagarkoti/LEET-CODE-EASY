@@ -2,6 +2,7 @@ int comp(const void *a,const void *b)
 {
     return *(int*)b-*(int*)a;
 }
+
 int deleteGreatestValue(int** grid, int gridSize, int* gridColSize)
 {
     for(int i=0;i<gridSize;i++)
