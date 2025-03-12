@@ -1,7 +1,5 @@
-#include <stdio.h>
-
 int maxProductDifference(int* nums, int numsSize) {
-    int max1 = 0, max2 = 0, min1 = __INT_MAX__, min2 = __INT_MAX__;
+    int max1 = 0, max2 = 0, min1 = __INT_MAX__, min2 = __INT_MAX__,max;
     // Single pass to find the two largest and two smallest numbers
     for (int i = 0; i < numsSize; i++) {
         if (nums[i] > max1) {
@@ -18,5 +16,6 @@ int maxProductDifference(int* nums, int numsSize) {
             min2 = nums[i];
         }
     }
-    return (max1 * max2) - (min1 * min2);
+    max = (max1 * max2) - (min1 * min2);
+    return max;
 }
