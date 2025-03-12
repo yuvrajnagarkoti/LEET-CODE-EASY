@@ -1,16 +1,26 @@
-int arrayPairSum(int* nums, int n) {
-    int count[20001] = {0};  // To store the frequency of numbers (-10^4 to 10^4)
-    
-    // Map -10000 to 0 index and 10000 to 20000 index
-    for (int i = 0; i < n; i++) 
-        count[nums[i] + 10000]++;
-    
-    int sum = 0, pick = 1;  // `pick` ensures we pick alternate elements
-    for (int i = 0; i < 20001; i++) {
-        while (count[i]--) {  
-            if (pick) sum += (i - 10000); // Convert back to original value
-            pick = !pick;  // Flip between 1 and 0
+#define swap(x,y,t) (t=x,x=y,y=t)
+void Q_sort(int *nums,int left,int right){
+    int base=nums[right];
+    int j=left-1;
+    int temp;
+    if(left<right){
+        for(int i=left;i<right;i++){
+            if(base<nums[i]){
+                j++;
+                swap(nums[j],nums[i],temp);
+            }
         }
+        swap(nums[j+1],nums[right],temp);
+        Q_sort(nums,left,j);
+        Q_sort(nums,j+2,right);
+    }
+}
+
+int arrayPairSum(int* nums, int numsSize) {
+    Q_sort(nums,0,numsSize-1);
+    int sum=0;
+    for(int i=1;i<numsSize;i=i+2){
+        sum=sum+fmin(nums[i-1],nums[i]);
     }
     return sum;
 }
