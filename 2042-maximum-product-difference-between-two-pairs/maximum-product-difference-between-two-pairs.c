@@ -36,6 +36,7 @@ void mergesort(int a[],int low,int high)
 
 int maxProductDifference(int* nums, int n)
 {
+    int w=0,x=1,y=n-1,z=n-2;
     mergesort(nums,0,n-1);
-    return ( (nums[n-1]*nums[n-2]) - (nums[0]*nums[1]) );
+    return ( (nums[y]*nums[z]) - (nums[w]*nums[x]) );
 }
