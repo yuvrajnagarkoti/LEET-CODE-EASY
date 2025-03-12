@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 int arrayPairSum(int* nums, int n) {
     int count[20001] = {0};  // To store the frequency of numbers (-10^4 to 10^4)
     
