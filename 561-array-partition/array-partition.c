@@ -1,45 +1,19 @@
-void merge(int a[],int low,int mid,int high)
-{
-    int i,j,k;
-    int n1=mid-low+1;
-    int n2=high-mid;
-    int leftarr[n1],rightarr[n2];
-    for(i=0;i<n1;i++)
-        leftarr[i]=a[low+i];
-    for(j=0;j<n2;j++)
-        rightarr[j]=a[mid+j+1];
-    i=j=0;
-    k=low;
-    while(i<n1 && j<n2)
-    {
-        if(leftarr[i]<rightarr[j])
-            a[k++]=leftarr[i++];
-        else
-            a[k++]=rightarr[j++];
-    }
-    while(i<n1)
-        a[k++]=leftarr[i++];
-    while(j<n2)
-        a[k++]=rightarr[j++];
-}
-void mergesort(int a[],int low,int high)
-{
-    if(low<high)
-    {
-        int mid = low + (high-low)/2;
-        mergesort(a,low,mid);
-        mergesort(a,mid+1,high);
-        merge(a,low,mid,high);
-    }
-}
+#include <stdio.h>
+#include <stdlib.h>
 
-int arrayPairSum(int* nums, int n)
-{
-    mergesort(nums,0,n-1);
-    int i,sum=0;
-    for(i=0;i<n;i+=2)
-    {
-        sum=sum+nums[i];
+int arrayPairSum(int* nums, int n) {
+    int count[20001] = {0};  // To store the frequency of numbers (-10^4 to 10^4)
+    
+    // Map -10000 to 0 index and 10000 to 20000 index
+    for (int i = 0; i < n; i++) 
+        count[nums[i] + 10000]++;
+    
+    int sum = 0, pick = 1;  // `pick` ensures we pick alternate elements
+    for (int i = 0; i < 20001; i++) {
+        while (count[i]--) {  
+            if (pick) sum += (i - 10000); // Convert back to original value
+            pick = !pick;  // Flip between 1 and 0
+        }
     }
     return sum;
 }
