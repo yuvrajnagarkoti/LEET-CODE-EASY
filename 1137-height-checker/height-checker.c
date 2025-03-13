@@ -34,7 +34,5 @@ int heightChecker(int* heights, int n)
             c++;
         }
     }
-    free(count);
-    free(expected);
     return c;
 }
