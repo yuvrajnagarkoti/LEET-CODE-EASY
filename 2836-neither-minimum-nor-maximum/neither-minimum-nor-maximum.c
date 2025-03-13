@@ -1,26 +1,10 @@
-int findNonMinOrMax(int* nums, int n)
-{
-    if(n>2)
-    {
-        int min=nums[0],max=nums[0];
-        for(int i=1;i<n;i++)
-        {
-            if(nums[i] < min)
-            {
-                min=nums[i];
-            }
-            if(nums[i] > max)
-            {
-                max=nums[i];
-            }
-        }
-        for(int i=0;i<n;i++)
-        {
-            if(nums[i]!=min && nums[i]!= max)
-            {
-                return nums[i];
-            }
-        }
-    }
-    return -1;
+int findNonMinOrMax(int* nums, int n) {
+    if (n < 3) return -1; // If less than 3 elements, return -1
+
+    // Find min, max, and a middle element in just 3 checks
+    int a = nums[0], b = nums[1], c = nums[2];
+
+    if ((a > b && a < c) || (a < b && a > c)) return a;
+    if ((b > a && b < c) || (b < a && b > c)) return b;
+    return c; // The remaining element is neither min nor max
 }
