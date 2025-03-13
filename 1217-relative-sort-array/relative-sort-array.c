@@ -43,6 +43,7 @@ int* relativeSortArray(int* arr1, int n1, int* arr2, int n2, int* returnSize)
             i++;
         }
     }
+    free(count);
     *returnSize=n1;
     return arr1;
 }
