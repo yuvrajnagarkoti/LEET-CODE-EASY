@@ -7,7 +7,6 @@ bool isAnagram(char* s, char* t) {
     if (strlen(s) != strlen(t)) {
         return false;
     }
-
     // Create frequency count arrays for both strings
     int countS[26] = {0};
     int countT[26] = {0};
