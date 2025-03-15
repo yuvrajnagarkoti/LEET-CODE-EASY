@@ -2,7 +2,8 @@
 #include <stdlib.h>
 
 // Merge function for Merge Sort
-void merge(int a[], int low, int mid, int high) {
+void merge(int a[], int low, int mid, int high)
+{
     int i, j, k;
     int n1 = mid - low + 1;
     int n2 = high - mid;
@@ -15,7 +16,8 @@ void merge(int a[], int low, int mid, int high) {
 
     i = j = 0;
     k = low;
-    while (i < n1 && j < n2) {
+    while (i < n1 && j < n2)
+    {
         if (leftarr[i] < rightarr[j])
             a[k++] = leftarr[i++];
         else
@@ -28,8 +30,10 @@ void merge(int a[], int low, int mid, int high) {
 }
 
 // Merge Sort function
-void mergesort(int a[], int low, int high) {
-    if (low < high) {
+void mergesort(int a[], int low, int high)
+{
+    if (low < high)
+    {
         int mid = low + (high - low) / 2;
         mergesort(a, low, mid);
         mergesort(a, mid + 1, high);
@@ -38,9 +42,11 @@ void mergesort(int a[], int low, int high) {
 }
 
 // **Binary search to find upper bound (number of elements ≤ target)**
-int upperBound(int* arr, int size, int target) {
+int upperBound(int *arr, int size, int target)
+{
     int left = 0, right = size;
-    while (left < right) {
+    while (left < right)
+    {
         int mid = left + (right - left) / 2;
         if (arr[mid] <= target)
             left = mid + 1;
@@ -50,19 +56,22 @@ int upperBound(int* arr, int size, int target) {
     return left; // Returns count of numbers ≤ target
 }
 
-int* answerQueries(int* nums, int n, int* queries, int m, int* returnSize) {
+int *answerQueries(int *nums, int n, int *queries, int m, int *returnSize)
+{
     mergesort(nums, 0, n - 1); // Sort the array
 
     // Compute prefix sum
-    int* prefixSum = (int*)malloc(n * sizeof(int));
+    int *prefixSum = (int *)malloc(n * sizeof(int));
     prefixSum[0] = nums[0];
-    for (int i = 1; i < n; i++) {
+    for (int i = 1; i < n; i++)
+    {
         prefixSum[i] = prefixSum[i - 1] + nums[i];
     }
     // Allocate memory for answer array
-    int* answer = (int*)malloc(m * sizeof(int));
+    int *answer = (int *)malloc(m * sizeof(int));
     // Process queries using binary search
-    for (int i = 0; i < m; i++) {
+    for (int i = 0; i < m; i++)
+    {
         answer[i] = upperBound(prefixSum, n, queries[i]);
     }
     free(prefixSum); // Free allocated memory
