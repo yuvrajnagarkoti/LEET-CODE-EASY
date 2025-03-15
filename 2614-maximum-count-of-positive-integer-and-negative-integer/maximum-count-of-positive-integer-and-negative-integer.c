@@ -1,15 +1,16 @@
-#include <stdio.h>
-#include <math.h>
-
 int findFirstNonNegative(int* nums, int n)
 {
     int low = 0, high = n - 1, index = n;
-    while (low <= high) {
+    while (low <= high)
+    {
         int mid = low + (high - low) / 2;
-        if (nums[mid] >= 0) { // Found non-negative
+        if (nums[mid] >= 0) // Found non-negative
+        { 
             index = mid;
             high = mid - 1;
-        } else {
+        }
+        else
+        {
             low = mid + 1;
         }
     }
