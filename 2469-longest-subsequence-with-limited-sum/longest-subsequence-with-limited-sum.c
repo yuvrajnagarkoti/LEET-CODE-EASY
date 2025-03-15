@@ -35,26 +35,6 @@ void mergesort(int a[], int low, int high)
     }
 }
 
-// Binary search to find the maximum index where sum <= query
-int binarySearch(int* prefixSum, int n, int query)
-{
-    int low = 0, high = n - 1, ans = 0;
-    while (low <= high)
-    {
-        int mid = low + (high - low) / 2;
-        if (prefixSum[mid] <= query)
-        {
-            ans = mid + 1; // Include this index (count starts from 1)
-            low = mid + 1;
-        }
-        else
-        {
-            high = mid - 1;
-        }
-    }
-    return ans;
-}
-
 int* answerQueries(int* nums, int n, int* queries, int m, int* returnSize)
 {
     mergesort(nums, 0, n - 1); // Sort array first
@@ -65,11 +45,17 @@ int* answerQueries(int* nums, int n, int* queries, int m, int* returnSize)
     {
         prefixSum[i] = prefixSum[i - 1] + nums[i];
     }
-    // Process each query using binary search
-    int* answer = (int*)malloc(m * sizeof(int));
-    for (int i = 0; i < m; i++)
+    int* answer = (int*)calloc(m, sizeof(int));
+    for (int i = 0; i<m; i++)
     {
-        answer[i] = binarySearch(prefixSum, n, queries[i]);
+        for(int j=n-1;j>=0;j--)
+        {
+            if(prefixSum[j] <= queries[i])
+            {
+                answer[i]=j+1;
+                break;
+            }
+        }
     }
     free(prefixSum); // Free memory after use
     *returnSize = m;
