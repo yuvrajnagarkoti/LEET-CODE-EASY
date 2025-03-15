@@ -1,21 +1,16 @@
 int missingNumber(int* nums, int n)
 {
-    int i,j,flag;
+    int i,flag;
+    int * a =(int *)calloc(n+1,sizeof(int));
+    for(i=0;i<n;i++)
+        a[nums[i]]++;
     for(i=0;i<n;i++)
     {
-        flag=0;
-        for(j=0;j<n;j++)
+        if(a[i] == 0)
         {
-            if(nums[j]==i)
-            {
-                flag=1;
-                break;
-            }
-        }
-        if(flag == 0)
-        {
-            return i;
+            flag=i;
+            break;
         }
     }
-    return i;
+    return flag;
 }
