@@ -20,10 +20,8 @@ void merge(int a[], int low, int mid, int high)
         else
             a[k++] = rightarr[j++];
     }
-
     while (i < n1)
         a[k++] = leftarr[i++];
-
     while (j < n2)
         a[k++] = rightarr[j++];
 }
