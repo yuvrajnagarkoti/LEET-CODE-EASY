@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void merge(int a[], int low, int mid, int high) {
+void merge(int a[], int low, int mid, int high)
+{
     int i, j, k;
     int n1 = mid - low + 1;
     int n2 = high - mid;
     int leftarr[n1], rightarr[n2];
-
     for (i = 0; i < n1; i++)
         leftarr[i] = a[low + i];
 
@@ -16,7 +16,8 @@ void merge(int a[], int low, int mid, int high) {
     i = j = 0;
     k = low;
 
-    while (i < n1 && j < n2) {
+    while (i < n1 && j < n2)
+    {
         if (leftarr[i] <= rightarr[j])
             a[k++] = leftarr[i++];
         else
@@ -30,8 +31,10 @@ void merge(int a[], int low, int mid, int high) {
         a[k++] = rightarr[j++];
 }
 
-void mergesort(int a[], int low, int high) {
-    if (low < high) {
+void mergesort(int a[], int low, int high)
+{
+    if (low < high)
+    {
         int mid = low + (high - low) / 2;
         mergesort(a, low, mid);
         mergesort(a, mid + 1, high);
@@ -39,16 +42,23 @@ void mergesort(int a[], int low, int high) {
     }
 }
 
-int binarySearchFirst(int nums[], int n, int target) {
+int binarySearchFirst(int nums[], int n, int target)
+{
     int low = 0, high = n - 1, first = -1;
-    while (low <= high) {
+    while (low <= high)
+    {
         int mid = low + (high - low) / 2;
-        if (nums[mid] == target) {
+        if (nums[mid] == target)
+        {
             first = mid;
             high = mid - 1;  // Keep searching on the left side
-        } else if (nums[mid] < target) {
+        }
+        else if (nums[mid] < target)
+        {
             low = mid + 1;
-        } else {
+        }
+        else
+        {
             high = mid - 1;
         }
     }
@@ -57,21 +67,28 @@ int binarySearchFirst(int nums[], int n, int target) {
 
 int binarySearchLast(int nums[], int n, int target) {
     int low = 0, high = n - 1, last = -1;
-    while (low <= high) {
+    while (low <= high)
+    {
         int mid = low + (high - low) / 2;
-        if (nums[mid] == target) {
+        if (nums[mid] == target)
+        {
             last = mid;
             low = mid + 1;  // Keep searching on the right side
-        } else if (nums[mid] < target) {
+        }
+        else if (nums[mid] < target)
+        {
             low = mid + 1;
-        } else {
+        }
+        else
+        {
             high = mid - 1;
         }
     }
     return last;
 }
 
-int* targetIndices(int* nums, int n, int target, int* returnSize) {
+int* targetIndices(int* nums, int n, int target, int* returnSize)
+{
     // Step 1: Sort the array
     mergesort(nums, 0, n - 1);
 
@@ -80,7 +97,8 @@ int* targetIndices(int* nums, int n, int target, int* returnSize) {
     int last = binarySearchLast(nums, n, target);
 
     // If the target is not found, return an empty list
-    if (first == -1 || last == -1) {
+    if (first == -1 || last == -1)
+    {
         *returnSize = 0;
         return NULL;
     }
@@ -90,7 +108,8 @@ int* targetIndices(int* nums, int n, int target, int* returnSize) {
     int *indices = (int*)malloc(count * sizeof(int));
 
     // Step 4: Fill the indices array
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < count; i++)
+    {
         indices[i] = first + i;
     }
 
