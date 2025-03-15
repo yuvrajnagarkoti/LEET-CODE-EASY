@@ -9,13 +9,10 @@ void merge(int a[], int low, int mid, int high)
     int leftarr[n1], rightarr[n2];
     for (i = 0; i < n1; i++)
         leftarr[i] = a[low + i];
-
     for (j = 0; j < n2; j++)
         rightarr[j] = a[mid + 1 + j];
-
     i = j = 0;
     k = low;
-
     while (i < n1 && j < n2)
     {
         if (leftarr[i] <= rightarr[j])
