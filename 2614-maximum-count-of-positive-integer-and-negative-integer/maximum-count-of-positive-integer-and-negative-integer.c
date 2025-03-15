@@ -36,7 +36,8 @@ int findFirstPositive(int* nums, int n)
     return index;
 }
 
-int maximumCount(int* nums, int n) {
+int maximumCount(int* nums, int n)
+{
     int neg_count = findFirstNonNegative(nums, n); // Number of negative numbers
     int pos_count = n - findFirstPositive(nums, n); // Number of positive numbers
     return fmax(neg_count, pos_count);
