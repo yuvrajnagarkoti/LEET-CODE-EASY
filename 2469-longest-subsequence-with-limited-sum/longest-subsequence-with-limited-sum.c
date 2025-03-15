@@ -45,7 +45,7 @@ int* answerQueries(int* nums, int n, int* queries, int m, int* returnSize)
     {
         prefixSum[i] = prefixSum[i - 1] + nums[i];
     }
-    int* answer = (int*)calloc(m, sizeof(int));
+    int* answer = (int*)calloc(m,sizeof(int));
     for (int i = 0; i<m; i++)
     {
         for(int j=n-1;j>=0;j--)
