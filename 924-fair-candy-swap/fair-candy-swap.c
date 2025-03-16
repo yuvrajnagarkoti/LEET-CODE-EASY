@@ -45,8 +45,8 @@ int* fairCandySwap(int* alice, int n1, int* bob, int n2, int* returnSize)
         s1=s1+alice[i];
     for(j=0;j<n2;j++)
         s2=s2+bob[j];
-    i = 0, j = 0;
     int diff = (s1-s2) / 2;
+    i = 0, j = 0;
     while (i < n1 && j < n2)
     {
         int x = alice[i], y = bob[j];
