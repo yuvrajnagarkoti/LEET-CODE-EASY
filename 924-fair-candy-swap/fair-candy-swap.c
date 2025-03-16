@@ -65,5 +65,5 @@ int* fairCandySwap(int* alice, int n1, int* bob, int n2, int* returnSize)
             j++;
         }
     }
-    return NULL;
+    return 0;
 }
