@@ -1,24 +1,36 @@
-struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2)
-{
+
+
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
+    // Create a dummy node to simplify edge cases
     struct ListNode *dummy = (struct ListNode *)malloc(sizeof(struct ListNode));
-    dummy->next = NULL;
-    struct ListNode *curr = dummy;
+    struct ListNode *curr = dummy; 
     int carry = 0;
 
-    while (l1 != NULL || l2 != NULL || carry)
-    {
-        int x = (l1 != NULL) ? l1->val : 0;
-        int y = (l2 != NULL) ? l2->val : 0;
-        int sum = x + y + carry;
-        carry = sum / 10;
-        sum = sum % 10;
-        struct ListNode *newNode = (struct ListNode *)malloc(sizeof(struct ListNode));
-        newNode->val = sum;
-        newNode->next = NULL;
-        curr->next = newNode;
-        curr = newNode;
-        if (l1) l1 = l1->next;
-        if (l2) l2 = l2->next;
+    // Traverse both lists while there are digits to add
+    while (l1 || l2 || carry) {
+        int sum = carry;
+
+        if (l1) {
+            sum += l1->val;
+            l1 = l1->next;
+        }
+        if (l2) {
+            sum += l2->val;
+            l2 = l2->next;
+        }
+
+        carry = sum / 10;  // Extract carry
+        sum = sum % 10;     // Extract last digit
+
+        // Create a new node for the sum digit
+        curr->next = (struct ListNode *)malloc(sizeof(struct ListNode));
+        curr = curr->next;
+        curr->val = sum;
+        curr->next = NULL;
     }
-    return dummy->next;
+
+    // Return the actual head (skipping dummy node)
+    struct ListNode *result = dummy->next;
+    free(dummy);  // Free dummy node to avoid memory leak
+    return result;
 }
