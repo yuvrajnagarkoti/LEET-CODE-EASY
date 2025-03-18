@@ -1,6 +1,5 @@
 int longestNiceSubarray(int* nums, int n) {
     int left = 0, maxLength = 0, bitMask = 0;
-
     for (int right = 0; right < n; right++)
     {
         while ((bitMask & nums[right]) != 0) // If there's a conflict
@@ -9,8 +8,8 @@ int longestNiceSubarray(int* nums, int n) {
             left++;
         }
         bitMask |= nums[right]; // Add nums[right] to bitMask
-        if (right - left + 1 > maxLength)
-        { // Update maxLength
+        if (right - left + 1 > maxLength) // Update maxLength
+        {
             maxLength = right - left + 1;
         }
     }
