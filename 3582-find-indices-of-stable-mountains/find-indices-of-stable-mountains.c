@@ -1,6 +1,6 @@
 int* stableMountains(int* height, int n, int threshold, int* returnSize)
 {
-    int * a= (int *)calloc(100,sizeof(int ));
+    int * a= (int *)malloc(n*sizeof(int ));
     int i,k=0;
     for(i=1;i<n;i++)
     {
