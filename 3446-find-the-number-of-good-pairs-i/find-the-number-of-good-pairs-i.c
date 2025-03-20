@@ -6,9 +6,7 @@ int numberOfPairs(int* nums1, int n1, int* nums2, int n2, int k)
         for(int j=0;j<n2;j++)
         {
             if(nums1[i] % (nums2[j]*k) == 0)
-            {
                 count++;
-            }
         }
     }
     return count;
