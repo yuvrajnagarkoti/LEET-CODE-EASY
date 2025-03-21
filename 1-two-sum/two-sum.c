@@ -5,16 +5,13 @@ int* twoSum(int* nums, int n, int target, int* returnSize)
     *returnSize = 2;
     for(i=0;i<n;i++)
     {
-        if(flag==1)
-            break;
-        for(j=0;j<n;j++)
+        for(j=i+1;j<n;j++)
         {
-            if(nums[i]+nums[j] == target && i != j)
+            if(nums[i]+nums[j] == target)
             {
                 a[0]=i;
                 a[1]=j;
-                flag=1;
-                break;
+                return a;
             }
         }
     }
