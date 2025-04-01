@@ -3,18 +3,23 @@ class Solution
 public:
     int majorityElement(vector<int>& nums)
     {
-        unordered_map<int,int> mpp;
+        int count=0,element;
         for(int i=0;i<nums.size();i++)
         {
-            mpp[nums[i]]++;
-        }
-        for(auto i:mpp)
-        {
-            if(i.second > (nums.size()/2))
+            if(count==0)
             {
-                return i.first;
+                count=1;
+                element=nums[i];
+            }
+            else if(nums[i]==element)
+            {
+                count++;
+            }
+            else
+            {
+                count--;
             }
         }
-        return -1;
+        return element;
     }
 };
