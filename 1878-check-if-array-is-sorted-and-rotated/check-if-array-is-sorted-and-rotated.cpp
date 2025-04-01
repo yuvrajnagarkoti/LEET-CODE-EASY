@@ -1,34 +1,16 @@
-class Solution {
+using namespace std;
+class Solution
+{
 public:
-    bool check(vector<int>& nums)
-    {
-        int i,k,c,a[nums.size()],flag=0;
-        for(k=0;k<nums.size()-1;k++)
-        {
-            if(nums[k]>nums[k+1])
-            {
-                flag=1;
-                k++;
-                break;
+    bool check(vector<int>& nums) {
+        int count = 0, n = nums.size();
+        // Count how many times the order breaks
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > nums[(i + 1) % n]) {
+                count++;
             }
         }
-        if(flag==0) return true;
-        c=0;
-        for(i=k ; i<nums.size();i++)
-        {
-            a[c++]=nums[i];
-        }
-        for(i=0 ; i<k ; i++)
-        {
-            a[c++]=nums[i];
-        }
-        for(i=0;i<nums.size()-1;i++)
-        {
-            if(a[i] > a[i+1])
-            {
-                return false;
-            }
-        }
-        return true;
+        // The array can be sorted and rotated if count <= 1
+        return count <= 1;
     }
 };
