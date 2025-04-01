@@ -3,20 +3,18 @@ class Solution
 public:
     int majorityElement(vector<int>& nums)
     {
-        unordered_map<int, int> count;
-        int n = nums.size();
-        int majorityThreshold = n / 2;
-        int maxElement = nums[0], maxCount = 0;
-
-        // Count occurrences of each element
-        for (int num : nums)
+        unordered_map<int,int> mpp;
+        for(int i=0;i<nums.size();i++)
         {
-            count[num]++;
-            // If an element appears more than n/2 times, return it immediately
-            if (count[num] > majorityThreshold) {
-                return num;
+            mpp[nums[i]]++;
+        }
+        for(auto i:mpp)
+        {
+            if(i.second > (nums.size()/2))
+            {
+                return i.first;
             }
         }
-        return maxElement; // This will always be reached since majority element always exists
+        return -1;
     }
 };
