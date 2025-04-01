@@ -2,11 +2,14 @@ using namespace std;
 class Solution
 {
 public:
-    bool check(vector<int>& nums) {
+    bool check(vector<int>& nums)
+    {
         int count = 0, n = nums.size();
         // Count how many times the order breaks
-        for (int i = 0; i < n; i++) {
-            if (nums[i] > nums[(i + 1) % n]) {
+        for (int i = 0; i < n; i++)
+        {
+            if (nums[i] > nums[(i + 1) % n])
+            {
                 count++;
             }
         }
