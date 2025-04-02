@@ -9,7 +9,7 @@ public:
         int s_sum = 0;
         for(int i=0;i<n;i++)
         {
-            s_sum = s_sum + nums[i];
+            s_sum += nums[i];
         }
         return sum - s_sum;
     }
