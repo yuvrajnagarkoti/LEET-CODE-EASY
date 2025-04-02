@@ -7,8 +7,7 @@ public:
         int n = prices.size();
         for(int i=1;i<n;i++)
         {
-            int cost = prices[i]-minimum;
-            maxprofit = max(maxprofit,cost);
+            maxprofit = max(maxprofit,prices[i]-minimum);
             minimum=min(minimum,prices[i]);
         }
         return maxprofit;
