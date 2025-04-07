@@ -10,9 +10,9 @@ public:
         set<char>st;     
         for(int i=0;i<n;i++)
         {
-            if(m.find(s[i])!=m.end())
+            if(m.contains(s[i]))
             {
-                if(m[s[i]]!=t[i])
+                if(m[s[i]] != t[i])
                     return false;
             }
             else
