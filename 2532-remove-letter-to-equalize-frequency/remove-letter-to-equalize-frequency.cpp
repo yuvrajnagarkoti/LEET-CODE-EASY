@@ -1,31 +1,39 @@
-class Solution
-{
+class Solution {
 public:
     bool equalFrequency(string word)
     {
-        int freq[26] = {0};
-        for (int i = 0; i < word.length(); i++)
+        vector<int> v1(26, 0);
+        for(char c: word)
         {
-            freq[word[i] - 'a']++;
+            v1[c-'a']++;
         }
-        for (int i = 0; i < 26; i++)
+        for(int i=0; i<26; i++)
         {
-            if (freq[i] == 0) continue;
-            freq[i]--;
-            int equal = -1;
-            bool ok = true;
-            for (int j = 0; j < 26; j++)
+            char c = i+'a';
+            set<int> temp;
+            if(v1[i] > 0)
             {
-                if (freq[j] == 0) continue;
-                if (equal == -1)
-                    equal = freq[j];
-                else if (freq[j] != equal) {
-                    ok = false;
-                    break;
+                for(int j=0; j<26; j++)
+                {
+                    if(j == i)
+                    {
+                        if(v1[j] > 1)
+                        {
+                            temp.insert(v1[j]-1);
+                        }
+                    }
+                    else
+                    {
+                        temp.insert(v1[j]);
+                    }
                 }
             }
-            freq[i]++;
-            if (ok) return true;
+            if(temp.size() == 0){
+                continue;
+            }
+            if(temp.size()-1 <= 1){
+                return true;
+            }
         }
         return false;
     }
