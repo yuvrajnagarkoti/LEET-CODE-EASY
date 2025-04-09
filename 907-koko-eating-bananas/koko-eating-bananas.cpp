@@ -1,25 +1,28 @@
 class Solution {
 public:
-    int minEatingSpeed(vector<int>& piles, int h)
+    int minEatingSpeed(vector<int>& piles, int maxHours)
     {
-        int l = 1 , r = *max_element(piles.begin(),piles.end()) ;
-        int opt = r ;
-        while(l<=r)
+        int left = 1;
+        int right = *max_element(piles.begin(), piles.end());
+        int optimalSpeed = right;
+        while (left <= right)
         {
-            int mid = (l+r)/2;
-            long long reqh = 0 ;
-            for(int p : piles)
+            int midSpeed = (left + right) / 2;
+            long long requiredHours = 0;
+            for (int bananas : piles)
             {
-                reqh+=(p+mid - 1)/mid ;
+                requiredHours += (bananas + midSpeed - 1) / midSpeed; // ceiling division
             }
-            if(reqh<=h)
+            if (requiredHours <= maxHours)
             {
-                opt = mid ;
-                r = mid - 1 ;
+                optimalSpeed = midSpeed;
+                right = midSpeed - 1;
             }
             else
-            l = mid + 1;  
-                  }
-         return opt ;   
+            {
+                left = midSpeed + 1;
+            }
+        }
+        return optimalSpeed;
     }
 };
