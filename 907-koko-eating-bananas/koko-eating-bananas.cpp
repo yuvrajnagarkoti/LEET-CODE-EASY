@@ -2,31 +2,24 @@ class Solution {
 public:
     int minEatingSpeed(vector<int>& piles, int h)
     {
-        long long low = 1;
-        long long high = *max_element(piles.begin(), piles.end());
-        long long key = high;
-
-        while (low <= high)
+        int l = 1 , r = *max_element(piles.begin(),piles.end()) ;
+        int opt = r ;
+        while(l<=r)
         {
-            long long k = low + (high - low) / 2;
-            long long temp = 0;
-
-            for (int i = 0; i < piles.size(); i++)
+            int mid = (l+r)/2;
+            long long reqh = 0 ;
+            for(int p : piles)
             {
-                temp += (piles[i] + k - 1) / k;  // cleaner ceiling division
+                reqh+=(p+mid - 1)/mid ;
             }
-
-            if (temp <= h)
+            if(reqh<=h)
             {
-                key = k;
-                high = k - 1;
+                opt = mid ;
+                r = mid - 1 ;
             }
             else
-            {
-                low = k + 1;
-            }
-        }
-
-        return (int)key;
+            l = mid + 1;  
+                  }
+         return opt ;   
     }
 };
