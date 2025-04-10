@@ -8,25 +8,20 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-class Solution {
+class Solution
+{
 public:
     ListNode* middleNode(ListNode* head)
     {
-        vector<int> list;
-        ListNode *temp=head;
-        int count=0;
-        while(temp!=NULL)
+        ListNode* slow = head;
+        ListNode* fast = head;
+        // fast moves 2 steps while slow moves 1 step
+        while (fast != nullptr && fast->next != nullptr)
         {
-            count++;
-            temp=temp->next;
+            slow = slow->next;
+            fast = fast->next->next;
         }
-        temp=head;
-        if(count%2 == 0) count=(count+1)/2;
-        else    count=count/2;
-        while(count--)
-        {
-            temp=temp->next;
-        }
-        return temp;
+        // When fast reaches the end, slow is at the middle
+        return slow;
     }
 };
