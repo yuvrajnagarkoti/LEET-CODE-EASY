@@ -1,10 +1,8 @@
-#include <string>
-#include <algorithm> // for reverse
-using namespace std;
-
-class Solution {
+class Solution
+{
 public:
-    string addBinary(string a, string b) {
+    string addBinary(string a, string b)
+    {
         string result;
         int i = a.size() - 1, j = b.size() - 1, carry = 0;
         while (i >= 0 || j >= 0 || carry)
