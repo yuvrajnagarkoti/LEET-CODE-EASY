@@ -46,10 +46,8 @@ public:
     for (i = 0; i < nums.size() - 2; i++)
     {
         if (i > 0 && nums[i] == nums[i - 1]) continue; // skip duplicates for i
-
         low = i + 1;
         high = nums.size() - 1;
-
         while (low < high)
         {
             int sum = nums[i] + nums[low] + nums[high];
