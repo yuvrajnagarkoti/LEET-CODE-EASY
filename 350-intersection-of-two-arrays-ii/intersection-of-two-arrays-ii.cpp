@@ -3,20 +3,20 @@ class Solution
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2)
     {
-        map<int,int> mpp;
-        vector <int> ans;
-        for(int i=0;i<nums1.size();i++)
-            mpp[nums1[i]]++;
-        for(int i=0;i<nums2.size();i++)
+        unordered_map<int,int> mpp;
+        vector<int> res;
+        for(int num:nums1)
         {
-            if((mpp.find(nums2[i]) != mpp.end()))
+            mpp[num]++;
+        }
+        for(int num:nums2)
+        {
+            if(mpp[num]>0)
             {
-                mpp[nums2[i]]--;
-                if(mpp[nums2[i]] == 0)
-                    mpp.erase(nums2[i]);
-                ans.push_back(nums2[i]);
+                res.push_back(num);
+                mpp[num]--;
             }
         }
-        return ans; 
+        return res;
     }
 };
