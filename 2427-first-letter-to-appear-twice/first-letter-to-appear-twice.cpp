@@ -1,16 +1,13 @@
-class Solution
-{
+class Solution {
 public:
     char repeatedCharacter(string s)
     {
-        int i,c[26] = {0};
-        for(i=0 ; i<s.length() ; i++ )
+        int freq[26] = {0};
+        for (char ch : s)
         {
-            if(c[int(s[i])-'a'] == 1)
-                break;
-            else
-                c[int(s[i])-'a'] =1;
+            if (freq[ch - 'a']) return ch;
+            freq[ch - 'a'] = 1;
         }
-        return s[i];
+        return '\0';
     }
 };
