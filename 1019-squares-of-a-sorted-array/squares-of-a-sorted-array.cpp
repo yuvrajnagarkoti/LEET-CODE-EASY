@@ -1,20 +1,22 @@
-class Solution {
+class Solution
+{
 public:
     vector<int> sortedSquares(vector<int>& nums)
     {
-        int l=0,h=nums.size()-1;
-        vector <int> v;
-        while( l <= h)
+        int l = 0, h = nums.size() - 1;
+        vector<int> v(nums.size()); // Preallocate size
+        int k = nums.size() - 1;     // Start filling from the end
+        while (l <= h)
         {
-            if(nums[l]*nums[l] < nums[h]*nums[h])
+            if (nums[l] * nums[l] > nums[h] * nums[h])
             {
-                v.insert(v.begin(), nums[h]*nums[h]);
-                h--;
+                v[k--] = nums[l] * nums[l];
+                l++;
             }
             else
             {
-                v.insert(v.begin(), nums[l]*nums[l]);
-                l++;
+                v[k--] = nums[h] * nums[h];
+                h--;
             }
         }
         return v;
