@@ -8,7 +8,7 @@ public:
         int k = nums.size() - 1;     // Start filling from the end
         while (l <= h)
         {
-            if (nums[l] * nums[l] > nums[h] * nums[h])
+            if (abs(nums[l]) > abs(nums[h]))
             {
                 v[k--] = nums[l] * nums[l];
                 l++;
