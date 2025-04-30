@@ -3,18 +3,12 @@ class Solution
 public:
     bool isPerfectSquare(int num)
     {
-        int low=0,high=num;
-        while( low <= high)
+        int i=1;
+        while(num>0)
         {
-            long mid = low + (high-low)/2;
-            if(mid*mid == num )
-            {
-                return true;
-            }
-            else if(mid*mid < num)
-                low=mid+1;
-            else
-                high=mid-1;
+            num -= i;     
+            i +=2;    
+            if(!num) return true;
         }
         return false;
     }
