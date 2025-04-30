@@ -1,15 +1,14 @@
-class Solution
-{
+class Solution {
 public:
+
     int findNumbers(vector<int>& nums)
     {
-        int count = 0;
+        int evenDigitCount = 0;
         for (int num : nums)
         {
-            int digits = (num == 0) ? 1 : (int)log10(num) + 1;
-            if (digits % 2 == 0)
-                count++;
+            if ((num >= 10 && num <= 99) || (num >= 1000 && num <= 9999) || num == 100000)
+                evenDigitCount++;
         }
-        return count;
+        return evenDigitCount;
     }
 };
