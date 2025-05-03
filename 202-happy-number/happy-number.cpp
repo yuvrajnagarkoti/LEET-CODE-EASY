@@ -2,18 +2,20 @@ class Solution {
 public:
     bool isHappy(int n)
     {
-        if(n==1 || n==7) return true;
-        else if(n<10) return false;
-        else
+        int i,sum,d,flag=1;
+        while(flag)
         {
-            int sum=0;
-            while(n>0)
+            sum = 0;
+            while(n > 0)
             {
-                int temp=n%10;
-                sum+= temp*temp;
-                n=n/10;
+                d = n%10;
+                n = n/10;
+                sum = sum + pow(d,2);
             }
-            return isHappy(sum);
+            n=sum;
+            if(sum < 10) flag=0;
         }
+        if(sum == 1 || sum == 7) return true;
+        return false;
     }
 };
