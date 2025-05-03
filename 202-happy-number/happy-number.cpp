@@ -1,21 +1,19 @@
-class Solution
-{
+class Solution {
 public:
     bool isHappy(int n)
     {
-        unordered_set<int> seen;
-        while (n != 1 && !seen.count(n))
+        if(n==1 || n==7) return true;
+        else if(n<10) return false;
+        else
         {
-            seen.insert(n);
-            int sum = 0;
-            while (n > 0)
+            int sum=0;
+            while(n>0)
             {
-                int d = n % 10;
-                sum += d * d;
-                n = n/10;
+                int temp=n%10;
+                sum+= temp*temp;
+                n=n/10;
             }
-            n = sum;
+            return isHappy(sum);
         }
-        return n == 1;
     }
 };
