@@ -7,7 +7,8 @@ public:
         int count = 0;
         for (int i = 0; i < n; i++)
         {
-            int a = dominoes[i][0]; int b = dominoes[i][1];
+            int a = dominoes[i][0];
+            int b = dominoes[i][1];
             if (a == b)
             {
                 count += (key[a][b]);
