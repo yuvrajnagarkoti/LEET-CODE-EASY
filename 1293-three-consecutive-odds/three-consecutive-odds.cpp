@@ -1,22 +1,21 @@
-class Solution {
+class Solution
+{
 public:
-    bool threeConsecutiveOdds(vector<int>& arr)
+    bool threeConsecutiveOdds(const std::vector<int>& arr)
     {
-        if (arr.size() < 3)
-            return false;
-        int count=0;        
-        for(int i =0; i < arr.size() ; i++)
-        {   
-            if (count ==3) return true;
-            if(arr[i]%2!=0)
+        int count = 0;
+        for (int num : arr)
+        {
+            if (num % 2 == 0)
             {
-                count++; 
+                count = 0;
+                continue;
             }
-            else
+            if (++count == 3)
             {
-                count =0; 
+                return true;
             }
         }
-        return count>=3? true:false; 
+        return false;
     }
 };
