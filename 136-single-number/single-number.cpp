@@ -3,17 +3,11 @@ class Solution
 public:
     int singleNumber(vector<int>& nums)
     {
-        int i;
-        map <int,int> m;
-        for(i=0;i<nums.size();i++)
+        int x = 0;
+        for(auto i : nums)
         {
-            m[nums[i]] ++;
+            x = x ^ i;
         }
-        for (auto& i : m)
-        {
-            if (i.second == 1)
-                return i.first;
-        }
-        return -1;
+        return x;
     }
 };
