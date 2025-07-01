@@ -1,22 +1,42 @@
-class Solution {
+class Solution
+{
 public:
+
+    static bool compare ( pair<int,int> &a, pair<int,int> &b)
+    {
+        return a.first < b.first;
+    }
+
     vector<int> twoSum(vector<int>& nums, int target)
     {
-        int i,j,n=nums.size();
-        for(i=0;i<n;i++)
+        vector<pair<int,int>> num;
+        vector<int> ans;
+        for(int i=0;i<nums.size();i++)
         {
-            for(j=i+1;j<n;j++)
-            {
-                if(nums[i]+nums[j]  == target)
-                {
-                    vector<int> ans;
-                    ans.push_back(i);
-                    ans.push_back(j);
-                    return ans;
-                }
-            }
+            num.push_back({nums[i],i});
         }
 
-        return nums;
+        sort(num.begin(),num.end(),compare);
+        int low = 0,high=num.size()-1;
+
+        while(low < high)
+        {
+            int temp = num[low].first + num[high].first;
+            if(temp == target)
+            {
+                ans.push_back(num[low].second);
+                ans.push_back(num[high].second);
+                break;
+            }
+            else if(temp > target)
+            {
+                high--;
+            }
+            else
+            {
+                low++;
+            }
+        }
+        return ans;
     }
 };
