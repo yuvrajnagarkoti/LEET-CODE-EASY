@@ -1,27 +1,37 @@
+#include <climits>
+
 class Solution {
 public:
     int myAtoi(string s)
     {
-        int i = 0, sign = 1;
+        int i = 0, flag = 1;
         long sum = 0;
-        // Skip leading whitespaces
-        while (i < s.length() && s[i] == ' ') {
+
+        while (i < s.length() && s[i] == ' ')
+            i++;
+
+        // Handle optional '+' or '-'
+        if (i < s.length()) {
+            if (s[i] == '-') {
+                flag = -1;
+                i++;
+            } else if (s[i] == '+') {
+                i++;
+            }
+        }
+
+        // Read digits with overflow check
+        while (i < s.length() && s[i] >= '0' && s[i] <= '9') {
+            int digit = s[i] - '0';
+            
+            if (sum > (INT_MAX - digit) / 10) {
+                return (flag == 1) ? INT_MAX : INT_MIN;
+            }
+
+            sum = sum * 10 + digit;
             i++;
         }
-        // Handle optional sign
-        if (i < s.length() && (s[i] == '+' || s[i] == '-')) {
-            sign = (s[i] == '-') ? -1 : 1;
-            i++;
-        }
-        // Convert digits to number
-        while (i < s.length() && isdigit(s[i]))
-        {
-            sum = sum * 10 + (s[i] - '0');
-            // Handle overflow
-            if (sign == 1 && sum > INT_MAX) return INT_MAX;
-            if (sign == -1 && -sum < INT_MIN) return INT_MIN;
-            i++;
-        }
-        return sign * sum;
+
+        return (int)(sum * flag);
     }
 };
