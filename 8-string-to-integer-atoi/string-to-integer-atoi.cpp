@@ -25,7 +25,8 @@ public:
         }
 
         // Read digits with overflow check
-        while (i < s.length() && s[i] >= '0' && s[i] <= '9') {
+        while (i < s.length() && s[i] >= '0' && s[i] <= '9')
+        {
             int digit = s[i] - '0';
             
             if (sum > (INT_MAX - digit) / 10) {
