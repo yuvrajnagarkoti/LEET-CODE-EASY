@@ -2,21 +2,19 @@ class Solution {
 public:
     int removeDuplicates(vector<int>& nums)
     {
-        int i;
-        vector<int> ans;
-        ans.push_back(nums[0]);
-        for(i=0;i<nums.size();i++)
+        int i=0,j=1,n=nums.size(),c=0;
+        for(i=0;i<n-1;i++)
         {
-            if( nums[i] != ans.back())
+            if(nums[i] == nums[i+1])
             {
-                ans.push_back( nums[i] );
+                for(j=i+1;j<n-1;j++)
+                {
+                    nums[j]=nums[j+1];
+                }
+                i--;
+                n--;
             }
         }
-
-        for(i=0;i<ans.size();i++)
-        {
-            nums[i]=ans[i];
-        }
-        return ans.size();
+        return n;
     }
 };
