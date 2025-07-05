@@ -2,7 +2,7 @@ class Solution {
 public:
     int findLucky(vector<int>& arr)
     {
-        int i,lucky;
+        int i;
         int count[501] = {0};
         for(i=0;i<arr.size();i++)
         {
