@@ -1,38 +1,31 @@
 class Solution
 {
-    public:
+public:
 
-    static bool compare(int a,int b)
+    static bool compare(int a, int b)
     {
-        return a>b;
+        return a > b;  // Descending order
     }
 
     int findLucky(vector<int>& arr)
     {
-        sort( arr.begin(),arr.end() ,compare);
-        if(arr.size() == 1)
+        sort(arr.begin(), arr.end(), compare);
+
+        int i = 0, j = 1;
+        while (j < arr.size())
         {
-            if(arr[0] == 1)     return 1;
-            return -1;
-        }
-        
-        int i=0,j=1;
-        while( j < arr.size() )
-        {
-            if( arr[i] != arr[j] )
+            if (arr[i] != arr[j])
             {
-                if( arr[i] == (j-i) )
-                    return j-i;
-                i=j;
-                j++;
+                if (arr[i] == (j - i))
+                    return arr[i];
+                i = j;
             }
-            else if(arr[i] == arr[j] )
-            {
-                j++;
-            }
+            j++;
         }
-        if(arr[i] == (j-i))
-            return j-i;
+
+        if (arr[i] == (j - i))
+            return arr[i];
+
         return -1;
     }
 };
