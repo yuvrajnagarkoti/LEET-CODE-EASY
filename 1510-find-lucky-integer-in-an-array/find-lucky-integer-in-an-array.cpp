@@ -2,22 +2,18 @@ class Solution {
 public:
     int findLucky(vector<int>& arr)
     {
-        int i,flag=0,lucky;
-        map <int,int> mpp;
+        int i,lucky;
+        int count[501] = {0};
         for(i=0;i<arr.size();i++)
         {
-            mpp[ arr[i] ]++;
+            count[arr[i]]++;
         }
 
-        for(auto it: mpp)
+        for(i=500;i>=1;i--)
         {
-            if(it.second == it.first)
-            {
-                flag = 1;
-                lucky = it.first;
-            }
+            if( count[i] == i)
+                return i;
         }
-
-        return flag == 0 ? -1 : lucky;
+        return -1;
     }
 };
