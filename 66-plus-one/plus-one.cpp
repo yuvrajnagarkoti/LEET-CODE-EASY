@@ -3,10 +3,10 @@ public:
     vector<int> plusOne(vector<int>& digits)
     {
         int i = digits.size()-1;
-        int temp,flag = 0;
+        int flag = 0;
         while( i >= 0)
         {
-            temp = 0;
+            int temp = 0;
             if(i == digits.size()-1)
             {
                 temp = 1;
