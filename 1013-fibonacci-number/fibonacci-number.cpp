@@ -5,15 +5,17 @@ public:
     {
         if(n <= 1)
             return n;
-
-        int p1 = 0;
-        int p2 = 1;
-        for(int i=1;i<n;i++)
+        int f=1;
+        int s=1;
+        int sum;
+        n=n-2;
+        while( n > 0)
         {
-            int temp = p1 + p2;
-            p1=p2;
-            p2=temp;
+            sum = f + s;
+            f = s;
+            s = sum;
+            n--;
         }
-        return p2;
+        return s;
     }
 };
