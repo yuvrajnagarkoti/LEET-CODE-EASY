@@ -2,32 +2,17 @@ class Solution {
 public:
     int strStr(string haystack, string needle)
     {
-        int i = 0, k = 0, start = -1;
-        while (i < haystack.size())
+        if (needle.empty()) return 0;
+        int n = haystack.size(), m = needle.size();
+        for (int i = 0; i <= n - m; ++i)
         {
-            if (haystack[i] == needle[k])
+            int j = 0;
+            while (j < m && haystack[i + j] == needle[j])
             {
-                if (k == 0)
-                    start = i; // Save the start index
-                k++;
-                i++;
-                if (k == needle.size())
-                    return start;
+                j++;
             }
-            else
-            {
-                if (k > 0)
-                {
-                    i = start + 1; // Reset i to the next char after start
-                    k = 0;
-                    start = -1;
-                }
-                else
-                {
-                    i++;
-                }
-            }
+            if (j == m) return i;  // Match found
         }
-        return -1;
+        return -1;  // No match
     }
 };
