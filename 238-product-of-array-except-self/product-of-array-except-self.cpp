@@ -3,40 +3,24 @@ class Solution
 public:
     vector<int> productExceptSelf(vector<int>& nums)
     {
-        int n = nums.size();
-        int zeroCount = 0;
-        long long product = 1;
-
-        for (int i = 0; i < n; i++)
+        int i,n = nums.size();
+        vector<int> pre(n,1);
+        vector<int> suf(n,1);
+        vector<int> ans(n);
+        for(i=1;i<n;i++)
         {
-            if (nums[i] == 0)
-                zeroCount++;
-            else
-                product *= nums[i];
-
-            if (zeroCount > 1)
-                break; // No need to continue
+            pre[i] = nums[i-1]*pre[i-1];
         }
-        vector<int> result(n, 0); // Initialize result with 0s
-        if (zeroCount > 1)
+        for(i=n-2;i>=0;i--)
         {
-            return result; // All zero if more than one zero
+            suf[i] = nums[i+1]*suf[i+1];
         }
-        else if (zeroCount == 1)
+        for(i=1;i<n-1;i++)
         {
-            for (int i = 0; i < n; i++)
-            {
-                if (nums[i] == 0)
-                    result[i] = product;
-            }
+            ans[i] = pre[i]*suf[i];
         }
-        else
-        {
-            for (int i = 0; i < n; i++)
-            {
-                result[i] = product / nums[i];
-            }
-        }
-        return result;
+        ans[0] = suf[0];
+        ans[n-1] = pre[n-1];
+        return ans;
     }
 };
