@@ -2,22 +2,22 @@ class Solution {
 public:
     bool isValid(string word)
     {
-        int i,con=0,vow=0;
-        if(word.length() < 3)
+        if (word.length() < 3)
             return false;
-        for( i=0;i<word.length();i++ )
-        {
-            char ch = tolower(word[i]);
-            if( ch == 'a' || ch=='e' || ch=='i' || ch=='o' || ch=='u')
-                con++;
-            else if( ch >= 'a' && ch <='z')
-                vow++;
-            else if( ch >= '0' && ch<='9');
+
+        int vowels = 0, consonants = 0;
+        for (char ch : word) {
+            ch = tolower(ch);
+
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+                vowels++;
+            else if (isalpha(ch))
+                consonants++;
+            else if (isdigit(ch))
+                continue;
             else
                 return false;
         }
-        if( con != 0 && vow != 0)
-            return true;
-        return false;
+        return vowels > 0 && consonants > 0;
     }
 };
