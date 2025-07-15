@@ -17,7 +17,6 @@ public:
             suf = suf * nums[i + 1];
             ans[i] = ans[i] * suf;
         }
-
         return ans;
     }
 };
