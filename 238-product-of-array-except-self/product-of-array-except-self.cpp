@@ -4,23 +4,20 @@ public:
     vector<int> productExceptSelf(vector<int>& nums)
     {
         int i,n = nums.size();
-        vector<int> pre(n,1);
-        vector<int> suf(n,1);
-        vector<int> ans(n);
+        int pre=1,suf=1;
+        vector<int> ans(n,1);
         for(i=1;i<n;i++)
         {
-            pre[i] = nums[i-1]*pre[i-1];
+            pre=pre*nums[i-1];
+            ans[i] = pre;
         }
-        for(i=n-2;i>=0;i--)
+        
+        for ( i=n-2; i>=0 ; i--)
         {
-            suf[i] = nums[i+1]*suf[i+1];
+            suf = suf * nums[i + 1];
+            ans[i] = ans[i] * suf;
         }
-        for(i=1;i<n-1;i++)
-        {
-            ans[i] = pre[i]*suf[i];
-        }
-        ans[0] = suf[0];
-        ans[n-1] = pre[n-1];
+
         return ans;
     }
 };
