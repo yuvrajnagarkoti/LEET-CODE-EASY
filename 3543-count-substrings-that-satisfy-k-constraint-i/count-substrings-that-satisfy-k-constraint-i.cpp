@@ -1,35 +1,33 @@
-class Solution
-{
+class Solution {
 public:
+    int countKConstraintSubstrings(string s, int k) {
+        int n = s.length();
+        int count = 0;
+        int i = 0;
+        int zeroCount = 0;
+        int oneCount = 0;
 
-    static bool isvalid(string s,int i,int j,int k)
-    {
-        int zc=0,oc=0;
-        while(i <=j)
+        for (int j = 0; j < n; j++)
         {
-            if(s[i] == '0')
-                zc++;
-            else
-                oc++;
-            i++;
-        }
-        if( zc <= k || oc <= k)
-            return true;
-        return false;
-    }
-    int countKConstraintSubstrings(string s, int k)
-    {
-        int i=0,j=0;
-        int count=0;
-        for(i=0;i<s.length();i++)
-        {
-            for(j=i;j<s.length();j++)
+            if (s[j] == '0')
             {
-                if(isvalid(s,i,j,k))
-                {
-                    count++;
-                }
+                zeroCount++;
             }
+            else
+            {
+                oneCount++;
+            }
+
+            while (zeroCount > k && oneCount > k)
+            {
+                if (s[i] == '0') {
+                    zeroCount--;
+                } else {
+                    oneCount--;
+                }
+                i++;
+            }
+            count += (j - i + 1);
         }
         return count;
     }
