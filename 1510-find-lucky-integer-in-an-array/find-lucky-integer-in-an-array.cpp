@@ -1,37 +1,27 @@
 class Solution
 {
 public:
-    // Custom compare function for sorting in descending order
-    static bool compare(int a, int b)
+
+    static bool compare(int a,int b)
     {
         return a > b;
     }
-
     int findLucky(vector<int>& arr)
     {
-        // Sort the array in descending order
-        sort(arr.begin(), arr.end(), compare);
-
-        int i = 0, j = 1;
-        while (j < arr.size())
+        sort(arr.begin(),arr.end(),compare);
+        int i,j,n=arr.size();
+        i=j=0;
+        while( i<n )
         {
-            if (arr[i] != arr[j])
+            while( j<n && arr[i] == arr[j])
             {
-                // If frequency of arr[i] equals its value, return it (lucky number found)
-                if (arr[i] == (j - i))
-                    return arr[i];
-
-                // Move to the next unique number
-                i = j;
+                j++;
             }
-            j++;
+            if( (j-i) == arr[i] )
+                return arr[i];
+            else
+                i=j;
         }
-
-        // Check the last group (needed because last group may not be checked inside the loop)
-        if (arr[i] == (j - i))
-            return arr[i];
-
-        // If no lucky number found, return -1
         return -1;
     }
 };
