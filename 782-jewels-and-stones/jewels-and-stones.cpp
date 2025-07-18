@@ -2,17 +2,15 @@ class Solution {
 public:
     int numJewelsInStones(string jewels, string stones)
     {
-        int i,count=0;
-        map <char,int> mpp;
-        for(i=0;i<jewels.length();i++)
+        int i,j,count=0;
+        for(i=0;i<jewels.size();i++)
         {
-            mpp[ jewels[i] ]++;
-        }
-        for(i=0;i<stones.length();i++)
-        {
-            if( mpp[stones[i]] > 0)
+            for(j=0;j<stones.size();j++)
             {
-                count++;
+                if( jewels[i] == stones[j] )
+                {
+                    count++;
+                }
             }
         }
         return count;
