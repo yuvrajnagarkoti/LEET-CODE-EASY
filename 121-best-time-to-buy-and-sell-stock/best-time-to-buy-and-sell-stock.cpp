@@ -11,13 +11,10 @@ public:
             arr[i] = prices[i]-mine;
             if(prices[i] < mine)
                 mine=prices[i];
+
+            if( arr[i] > maxprofit )
+                maxprofit = arr[i];
         }
-        mine=0;
-        for(i=0;i<n;i++)
-        {
-            if(mine < arr[i])
-                mine=arr[i];
-        }
-        return mine;
+        return maxprofit;
     }
 };
