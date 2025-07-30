@@ -2,12 +2,13 @@ class Solution {
 public:
     char repeatedCharacter(string s)
     {
-        int freq[26] = {0};
-        for (char ch : s)
+        map<char,int> mpp;
+        for(int i=0;i<s.length();i++)
         {
-            if (freq[ch - 'a']) return ch;
-            freq[ch - 'a'] = 1;
+            mpp[s[i]]++;
+            if(mpp[s[i]] == 2)
+                return s[i];
         }
-        return '\0';
+        return '0';
     }
 };
