@@ -2,11 +2,11 @@ class Solution {
 public:
     char repeatedCharacter(string s)
     {
-        map<char,int> mpp;
+        int mpp[26] = {0};
         for(int i=0;i<s.length();i++)
         {
-            mpp[s[i]]++;
-            if(mpp[s[i]] == 2)
+            mpp[s[i]-'a']++;
+            if(mpp[s[i]-'a'] == 2)
                 return s[i];
         }
         return '0';
