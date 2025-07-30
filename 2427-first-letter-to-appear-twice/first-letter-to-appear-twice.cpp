@@ -1,14 +1,19 @@
-class Solution {
-public:
-    char repeatedCharacter(string s)
-    {
-        int mpp[26] = {0};
-        for(int i=0;i<s.length();i++)
+class Solution
+{
+    public:
+        char repeatedCharacter(string s)
         {
-            mpp[s[i]-'a']++;
-            if(mpp[s[i]-'a'] == 2)
-                return s[i];
+            string s1;
+            char ans;
+            for(int i=0;i<s.size();i++)
+            {
+                if(find(s1.begin(),s1.end(),s[i])!=s1.end())
+                {
+                    ans=s[i];
+                    break;
+                }
+                else s1.push_back(s[i]);
+            }
+            return ans;
         }
-        return '0';
-    }
 };
