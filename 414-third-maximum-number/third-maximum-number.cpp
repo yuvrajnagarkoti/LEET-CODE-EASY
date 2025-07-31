@@ -1,11 +1,11 @@
 class Solution {
 public:
-    int thirdMax(vector<int>& nums)
-    {
+    int thirdMax(vector<int>& nums) {
         long m1 = LONG_MIN, m2 = LONG_MIN, m3 = LONG_MIN;
-        for (int num : nums)
-        {
-            if (num == m1 || num == m2 || num == m3) continue; // skip duplicates
+
+        for (int num : nums) {
+            if (num == m1 || num == m2 || num == m3)
+                continue;
             if (num > m1)
             {
                 m3 = m2;
