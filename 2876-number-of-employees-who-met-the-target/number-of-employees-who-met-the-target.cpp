@@ -2,13 +2,11 @@ class Solution {
 public:
     int numberOfEmployeesWhoMetTarget(vector<int>& hours, int target)
     {
-        int i,count=0;
-        for(i=0;i<hours.size();i++)
+        int count=0;
+        for(int i : hours)
         {
-            if(hours[i] >= target)
-            {
+            if( i >= target)
                 count++;
-            }
         }
         return count;
     }
