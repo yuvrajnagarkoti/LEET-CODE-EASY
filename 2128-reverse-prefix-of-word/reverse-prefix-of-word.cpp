@@ -10,10 +10,16 @@ public:
         }
         if(word[i] == ch)
         {
-            string ans=word.substr(0,i+1);
-            reverse(ans.begin(),ans.end());
-            ans=ans+word.substr(i+1,n);
-            return ans;
+            int j=0;
+            char temp;
+            while( j < i)
+            {
+                temp = word[j];
+                word[j]=word[i];
+                word[i]=temp;
+                i--;
+                j++;
+            }
         }
         return word;
     }
