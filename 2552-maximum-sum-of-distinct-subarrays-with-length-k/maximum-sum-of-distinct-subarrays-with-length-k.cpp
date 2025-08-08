@@ -5,27 +5,29 @@ public:
         int n = nums.size();
         unordered_map<int, int> freq;
         long long sum = 0, ans = 0;
-        int left = 0;
+        int left = 0, right = 0;
 
-        for (int right = 0; right < n; ++right) {
+        while (right < n)
+        {
             freq[nums[right]]++;
             sum += nums[right];
-
-            // If duplicate, shrink from left until unique
-            while (freq[nums[right]] > 1) {
+            // If duplicate found, shrink window from left
+            while (freq[nums[right]] > 1)
+            {
                 freq[nums[left]]--;
                 sum -= nums[left];
                 left++;
             }
-
-            // Check for valid window of size k
-            if (right - left + 1 == k) {
+            // If window size is exactly k
+            if (right - left + 1 == k)
+            {
                 ans = max(ans, sum);
-                // shrink from left to slide window
+                // Shrink window to maintain size k
                 freq[nums[left]]--;
                 sum -= nums[left];
                 left++;
             }
+            right++;
         }
         return ans;
     }
