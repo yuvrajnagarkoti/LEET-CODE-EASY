@@ -1,18 +1,16 @@
-class Solution
-{
+class Solution {
 public:
     int climbStairs(int n)
     {
-        if(n<=3)
-            return n;
-        int p1 = 2;
-        int p2 = 3;
-        for(int i=3;i<n;i++)
+        if(n==1)
+            return 1;
+        int t1=1,t2=2;
+        for(int i=2;i<n;i++)
         {
-            int temp=p1+p2;
-            p1=p2;
-            p2=temp;
+            int temp = t1 + t2;
+            t1=t2;
+            t2=temp;
         }
-        return p2;
+        return t2; 
     }
 };
