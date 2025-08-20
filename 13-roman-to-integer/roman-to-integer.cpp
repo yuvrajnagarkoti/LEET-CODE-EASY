@@ -4,61 +4,21 @@ class Solution
     int romanToInt(string s)
     {
         int i=0,ans=0,n=s.length();
-        while( i<n )
+        map <char,int> mpp;
+        mpp['I'] = 1;
+        mpp['V'] = 5;
+        mpp['X'] = 10;
+        mpp['L'] = 50;
+        mpp['C'] = 100;
+        mpp['D'] = 500;
+        mpp['M'] = 1000;
+
+        while(i<n)
         {
-            if(s[i] == 'M')
-                ans=ans+1000;
-            else if(s[i] == 'D')
-                ans=ans+500;
-            else if(s[i] == 'L')
-                ans=ans+50;
-            else if(s[i] == 'V')
-                ans=ans+5;
-            else if(s[i] == 'C')
-            {
-                if(i<n-1 && s[i+1]=='D')
-                {
-                    ans+=400;
-                    i++;
-                }
-                else if( i<n-1 && s[i+1]=='M')
-                {
-                    ans+=900;
-                    i++;
-                }
-                else
-                    ans+=100;
-            }
-            else if(s[i] == 'X')
-            {
-                if(i<n-1 && s[i+1]=='L')
-                {
-                    ans+=40;
-                    i++;
-                }
-                else if( i<n-1 && s[i+1]=='C')
-                {
-                    ans+=90;
-                    i++;
-                }
-                else
-                    ans+=10;
-            }
-            else if(s[i] == 'I')
-            {
-                if(i<n-1 && s[i+1]=='V')
-                {
-                    ans+=4;
-                    i++;
-                }
-                else if( i<n-1 && s[i+1]=='X')
-                {
-                    ans+=9;
-                    i++;
-                }
-                else
-                    ans+=1;
-            }
+            if(i<n-1 && mpp[s[i]] < mpp[s[i+1]] )
+                ans=ans-mpp[s[i]];
+            else
+                ans=ans+mpp[s[i]];
             i++;
         }
         return ans;
