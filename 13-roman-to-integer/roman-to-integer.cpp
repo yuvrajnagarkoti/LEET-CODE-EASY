@@ -4,7 +4,7 @@ class Solution
     int romanToInt(string s)
     {
         int i=0,ans=0,n=s.length();
-        map <char,int> mpp;
+        unordered_map <char,int> mpp;
         mpp['I'] = 1;
         mpp['V'] = 5;
         mpp['X'] = 10;
