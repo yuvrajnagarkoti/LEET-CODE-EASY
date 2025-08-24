@@ -1,27 +1,22 @@
-class Solution
-{
+class Solution {
 public:
     bool isPalindrome(string s)
     {
-        string filtered;
-        // Convert to lowercase and filter only alphanumeric characters
-        for (char ch : s) 
+        string ans = "";
+        for (int i = 0; i < s.length(); i++)
         {
-            if (isalnum(ch))
-            {
-                filtered += tolower(ch);
-            }
+            if ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z'))
+                ans += tolower((unsigned char)s[i]);
+            else if( s[i]>='0' && s[i]<='9')
+                ans += tolower((unsigned char)s[i]);            
         }
-        // Two-pointer check for palindrome
-        int left = 0, right = filtered.size() - 1;
-        while (left < right)
-        {
-            if (filtered[left] != filtered[right])
-            {
+        int i=0,j=ans.length()-1;
+        while(i <= j)
+        {   
+            if(ans[i] != ans[j])
                 return false;
-            }
-            left++;
-            right--;
+            i++;
+            j--;
         }
         return true;
     }
