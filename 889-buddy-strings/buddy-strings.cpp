@@ -13,7 +13,7 @@ public:
             }
             return false;
         }
-
+        
         vector<int> diff;
         for (int i = 0; i < s.length(); i++)
         {
@@ -21,7 +21,6 @@ public:
                 diff.push_back(i);
             }
         }
-
         // Valid if exactly 2 mismatches and swapping fixes it
         return diff.size() == 2 && s[diff[0]] == goal[diff[1]] && s[diff[1]] == goal[diff[0]];
     }
