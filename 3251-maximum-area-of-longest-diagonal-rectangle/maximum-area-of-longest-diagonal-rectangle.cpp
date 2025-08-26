@@ -7,7 +7,7 @@ public:
 
         for (auto &rect : dim)
         {
-            long long d = 1LL*rect[0]*rect[0] + 1LL*rect[1]*rect[1];
+           long long d = (long long)rect[0] * rect[0] + (long long)rect[1] * rect[1];
             int a = rect[0] * rect[1];
             if (d > maxDiagSq)
             {
