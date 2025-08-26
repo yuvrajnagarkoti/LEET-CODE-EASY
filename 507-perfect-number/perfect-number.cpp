@@ -8,6 +8,6 @@ public:
             if(num%i == 0)
                 sum+=i;
         }
-        return num==sum? true:false;
+        return num==sum;
     }
 };
