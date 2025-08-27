@@ -2,20 +2,15 @@ class Solution {
 public:
     char findTheDifference(string s, string t)
     {
-        vector<int> count(26,0);
+        int s1=0,s2=0;
         for(int i=0;i<s.length();i++)
         {
-            count[s[i]-'a']++;
+            s1+=s[i];
         }
         for(int i=0;i<t.length();i++)
         {
-            count[t[i]-'a']--;
+            s2+=t[i];
         }
-        for(int i=0;i<26;i++)
-        {
-            if(count[i] != 0)
-                return (char)i+'a';
-        }
-        return '0';
+        return (char)s2-s1;
     }
 };
