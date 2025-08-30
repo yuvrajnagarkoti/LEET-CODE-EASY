@@ -6,7 +6,7 @@ public:
         {
             for(int j=i+k;j>i;j--)
             {
-                if(j<nums.size() && nums[i] == nums[j] && abs(i-j)<=k)
+                if(j<nums.size() && nums[i] == nums[j])
                     return true;                
             }
         }
