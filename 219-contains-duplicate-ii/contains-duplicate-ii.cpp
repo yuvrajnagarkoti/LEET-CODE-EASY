@@ -8,8 +8,7 @@ public:
             if(mpp.count(nums[i]))
                 return true;
             mpp[nums[i]]=1;
-        }
-        
+        }    
         int i=0,j=k+1;
         while( j < nums.size() )
         {
