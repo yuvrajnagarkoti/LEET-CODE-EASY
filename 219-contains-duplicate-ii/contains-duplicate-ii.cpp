@@ -5,19 +5,19 @@ public:
         unordered_map<int,int> mpp;
         for(int i=0;i<=k && i<nums.size();i++)
         {
-            if(mpp.find(nums[i]) == mpp.end())
-                mpp[nums[i]]++;
-            else
+            if(mpp.count(nums[i]))
                 return true;
+            mpp[nums[i]]=1;
         }
+        
         int i=0,j=k+1;
         while( j < nums.size() )
         {
             mpp.erase(nums[i]);
-            if(mpp.find(nums[j]) == mpp.end())
-                mpp[nums[j]]++;
-            else
+            if(mpp.count(nums[j]))
                 return true;
+            
+            mpp[nums[j]]=1;
             i++;
             j++;
         }
