@@ -11,10 +11,8 @@ public:
             if(s[i] == t[j])
             {
                 i++;
-                j++;
             }
-            else
-                j++;
+            j++;
         }
         if(i == s.length())
             return true;
