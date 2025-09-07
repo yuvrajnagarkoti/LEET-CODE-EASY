@@ -1,28 +1,21 @@
-class Solution {
-public:
+class Solution
+{
+    public:
     vector<int> sumZero(int n)
     {
-        vector<int> ans(n,0);
-        if(n%2 == 0)
+        vector<int> ans;     
+        // For pairs (x, -x)
+        for (int i = 1; i <= n/2; i++)
         {
-            int i=0;
-            while(i<n)
-            {
-                int c=i;
-                ans[i++]= c+1;
-                ans[i++]= -(c+1);
-            }
+            ans.push_back(i);
+            ans.push_back(-i);
         }
-        else
+        
+        // If odd, add a 0
+        if (n % 2 != 0)
         {
-            int i=0;
-            while(i<n-1)
-            {
-                int c=i;
-                ans[++i]=c+1;
-                ans[++i]=-(c+1);
-            }
-        }
+            ans.push_back(0);
+        }    
         return ans;
     }
 };
