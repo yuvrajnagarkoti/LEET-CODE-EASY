@@ -23,7 +23,6 @@ public:
                 ans[++i]=-(c+1);
             }
         }
-        sort(ans.begin(),ans.end());
         return ans;
     }
 };
