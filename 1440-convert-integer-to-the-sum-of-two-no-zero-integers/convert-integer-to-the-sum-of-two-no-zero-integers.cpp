@@ -1,30 +1,25 @@
 class Solution
 {
-    public:
-    static bool isnozero(int n)
+public:
+    static bool hasNoZeroDigit(int n)
     {   
-        if(n==0)
-            return false;
-        while(n>0)
+        while (n > 0)
         {
-            int temp = n%10;
-            n=n/10;
-            if(temp == 0)
+            if (n % 10 == 0)
                 return false;
+            n = n/10;
         }
         return true;
     }
+
     vector<int> getNoZeroIntegers(int n)
     {
-        int i=1,j=n-1;
-        while(i<=j)
+        for (int i = 1; i < n; i++)
         {
-            if(isnozero(i) && isnozero(j))
-                break;
-            i++;
-            j--;
+            int j = n - i;
+            if (hasNoZeroDigit(i) && hasNoZeroDigit(j))
+                return {i, j};
         }
-        return {i,j}; 
+        return {}; // theoretically unreachable
     }
-    
 };
