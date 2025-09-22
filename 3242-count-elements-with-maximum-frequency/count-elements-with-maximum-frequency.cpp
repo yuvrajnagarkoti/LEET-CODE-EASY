@@ -2,22 +2,20 @@ class Solution {
 public:
     int maxFrequencyElements(vector<int>& nums)
     {
-        int count[101] = {0};
-        int maxf=0;
-        for(int i=0;i<nums.size();i++)
+        unordered_map<int,int> count;
+        int maxf = 0;
+        for(int n : nums)
         {
-            count[nums[i]]++;
-            if(count[nums[i]] > maxf)
-                maxf=count[nums[i]];
+            count[n]++;
+            maxf = max(maxf, count[n]);
         }
-        int ans=0;
-        for(int i=1;i<101;i++)
+        int ans = 0;
+        for(auto &p : count)
         {
-            if(count[i] == maxf)
-            {
-                ans=ans+count[i];
-            }
+            if(p.second == maxf)
+                ans += p.second;
         }
         return ans;
+
     }
 };
