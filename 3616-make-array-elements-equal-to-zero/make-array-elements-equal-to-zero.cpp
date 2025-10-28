@@ -4,68 +4,34 @@ public:
     int countValidSelections(vector<int>& nums)
     {
         int ans = 0;
-        
-        // Case 1: start moving right
-        for (int i = 0; i < nums.size(); i++)
+        int n = nums.size();
+
+        // Try each zero position as a starting point
+        for (int i = 0; i < n; i++)
         {
-            if (nums[i] == 0)
+            if (nums[i] != 0) continue;
+
+            // Try both directions: +1 (right), -1 (left)
+            for (int dir : {1, -1})
             {
-                vector<int> num(nums.begin(), nums.end());
+                vector<int> temp(nums);
                 int j = i;
-                int counter = 1;
+                int step = dir;
 
-                while (j >= 0 && j < num.size())
+                // Simulate movement
+                while (j >= 0 && j < n)
                 {
-                    if (num[j] > 0)
+                    if (temp[j] > 0)
                     {
-                        num[j]--;
-                        counter = -counter; // toggle direction
+                        temp[j]--;
+                        step = -step; // flip direction
                     }
-                    j += counter;
+                    j += step;
                 }
 
-                bool allZero = true;
-                for (int k = 0; k < num.size(); k++)
-                {
-                    if (num[k] != 0)
-                    {
-                        allZero = false;
-                        break;
-                    }
-                }
-                if (allZero) ans++;
-            }
-        }
-
-        // Case 2: start moving left
-        for (int i = 0; i < nums.size(); i++)
-        {
-            if (nums[i] == 0)
-            {
-                vector<int> num(nums.begin(), nums.end());
-                int j = i;
-                int counter = -1;
-
-                while (j >= 0 && j < num.size())
-                {
-                    if (num[j] > 0)
-                    {
-                        num[j]--;
-                        counter = -counter; // toggle direction
-                    }
-                    j += counter;
-                }
-
-                bool allZero = true;
-                for (int k = 0; k < num.size(); k++)
-                {
-                    if (num[k] != 0)
-                    {
-                        allZero = false;
-                        break;
-                    }
-                }
-                if (allZero) ans++;
+                // Check if all elements are zero
+                if (all_of(temp.begin(), temp.end(), [](int x){ return x == 0; }))
+                    ans++;
             }
         }
         return ans;
