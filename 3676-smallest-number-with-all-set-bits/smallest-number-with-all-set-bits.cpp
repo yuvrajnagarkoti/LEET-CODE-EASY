@@ -2,11 +2,11 @@ class Solution {
 public:
     int smallestNumber(int n)
     {
-        int res = 1;
-        while (res < n)
+        int ans = 1;
+        while (ans < n)
         {
-            res= res*2+1;
+            ans= ans*2+1;
         }
-        return res;
+        return ans;
     }
 };
