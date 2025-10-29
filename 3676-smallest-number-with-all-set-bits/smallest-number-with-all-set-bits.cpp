@@ -2,15 +2,11 @@ class Solution {
 public:
     int smallestNumber(int n)
     {
-        string ans = "1";
-        while(true)
+        int res = 1;
+        while (res < n)
         {
-            int temp = stoi(ans, nullptr, 2);
-            if(n <= temp)
-                break;
-            
-            ans=ans+'1';
+            res= res*2+1;
         }
-        return stoi(ans, nullptr, 2);
+        return res;
     }
 };
