@@ -2,17 +2,21 @@ class Solution {
 public:
     int findFinalValue(vector<int>& nums, int original)
     {
-        map <int,int> mpp;
-        for(int i=0;i<nums.size();i++)
+        while(true)
         {
-            mpp[nums[i]]++;
-        }
-        while( mpp.find(original) != mpp.end())
-        {
-            if(mpp[original])
+            int flag=0;
+            for(int i=0;i<nums.size();i++)
             {
-                original = 2 * original;
+                if(nums[i] == original)
+                {
+                    flag=1;
+                    break;
+                }
             }
+            if(flag)
+                original=original*2;
+            else
+                break;
         }
         return original;
     }
