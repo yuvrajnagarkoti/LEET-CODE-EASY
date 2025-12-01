@@ -2,26 +2,20 @@ class Solution {
 public:
     vector<int> findMissingElements(vector<int>& nums)
     {
+        sort(nums.begin(), nums.end());
+        int n = nums.size();
         vector<int> ans;
-        int low=INT_MAX,high=0;
-        for(int i=0;i<nums.size();i++)
-        {
-            if(nums[i] > high)
-                high = nums[i];
-            if(nums[i] < low)
-                low = nums[i];
-        }
-        vector<int> temp(high-low+1,0);
-        for(int i=0;i<nums.size();i++)
-        {
-            temp[nums[i]-low]=1;
-        }
 
-        for(int i=0;i<temp.size();i++)
+        for( int i = 0; i < n - 1; i ++)
         {
-            if(temp[i] == 0)
-                ans.push_back(i+low);
+            if (nums[i+1] != nums[i] + 1)
+            {
+                for (int j = nums[i] + 1; j < nums[i+1]; j++)
+                {
+                    ans.push_back(j);
+                }
+            }
         }
-        return ans;
+        return ans;   
     }
 };
