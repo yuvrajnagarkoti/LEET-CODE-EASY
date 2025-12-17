@@ -1,15 +1,21 @@
-class Solution {
+class Solution
+{
 public:
-    int removeDuplicates(vector<int>& nums)
+    int removeDuplicates(vector<int>& nums) 
     {
-        int i=0,j=0;
-        while( j<nums.size() )
+        int low=0,high=1;
+        int n=nums.size();
+        while( high < n)
         {
-            if(nums[i] == nums[j] )
-                j++;
+            if(nums[low] == nums[high])
+            {
+                high++;
+            }
             else
-                nums[++i]=nums[j++];
+            {
+                nums[++low] = nums[high];
+            }
         }
-        return i+1;
+        return low+1;
     }
 };
