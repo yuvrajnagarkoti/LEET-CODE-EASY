@@ -1,24 +1,42 @@
-class Solution
-{
+class Solution {
 public:
     vector<int> sortedSquares(vector<int>& nums)
     {
-        int l = 0, h = nums.size() - 1;
-        vector<int> v(nums.size()); // Preallocate size
-        int k = nums.size() - 1;     // Start filling from the end
-        while (l <= h)
+        vector<int> ans;
+        int n = nums.size();
+        int high = n;
+        for (int i = 0; i < n; i++)
         {
-            if (abs(nums[l]) > abs(nums[h]))
+            if (nums[i] >= 0)
             {
-                v[k--] = nums[l] * nums[l];
-                l++;
+                high = i;
+                break;
+            }
+        }
+        int low = high - 1;
+        for (int i = 0; i < n; i++)
+        {
+            nums[i] = nums[i] * nums[i];
+        }
+        while (low >= 0 && high < n)
+        {
+            if (nums[low] <= nums[high])
+            {
+                ans.push_back(nums[low--]);
             }
             else
             {
-                v[k--] = nums[h] * nums[h];
-                h--;
+                ans.push_back(nums[high++]);
             }
         }
-        return v;
+        while (low >= 0)
+        {
+            ans.push_back(nums[low--]);
+        }
+        while (high < n)
+        {
+            ans.push_back(nums[high++]);
+        }
+        return ans;
     }
 };
