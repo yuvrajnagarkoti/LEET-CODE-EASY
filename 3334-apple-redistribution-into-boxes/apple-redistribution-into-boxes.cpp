@@ -13,15 +13,14 @@ public:
             sum=sum+apple[i];
         }
         sort(capacity.begin(),capacity.end(),compare);
-        int i;
-        for(i=0;i<capacity.size();i++)
+        for(int i=0;i<capacity.size();i++)
         {
             sum=sum-capacity[i];
             if(sum <= 0)
             {
-                break;
+                return i+1;
             }
         }
-        return i+1;
+        return -1;
     }
 };
