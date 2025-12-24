@@ -1,17 +1,27 @@
-class Solution {
+class Solution
+{
 public:
+    static bool compare(int a ,int b)
+    {
+        return a>b;
+    }
     int minimumBoxes(vector<int>& apple, vector<int>& capacity)
     {
-        int totalApples = 0;
-        for (int i = 0; i < apple.size(); i++)
-            totalApples += apple[i];
-        sort(capacity.begin(), capacity.end(), greater<int>());
-        for (int i = 0; i < capacity.size(); i++)
+        int sum=0;
+        for(int i=0;i<apple.size();i++)
         {
-            totalApples -= capacity[i];
-            if (totalApples <= 0)
-                return i + 1;
+            sum=sum+apple[i];
         }
-        return 0;
+        sort(capacity.begin(),capacity.end(),compare);
+        int i;
+        for(i=0;i<capacity.size();i++)
+        {
+            sum=sum-capacity[i];
+            if(sum <= 0)
+            {
+                break;
+            }
+        }
+        return i+1;
     }
 };
