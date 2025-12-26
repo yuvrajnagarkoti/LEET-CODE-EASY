@@ -1,21 +1,32 @@
-class Solution {
+class Solution
+{
 public:
+    static int digs(int n)
+    {
+        int sum=0;
+        while(n>0)
+        {
+            int t=n%10;
+            sum=sum + (t*t);
+            n=n/10;
+        }
+        return sum;
+    }
+
     bool isHappy(int n)
     {
-        int i,sum,d,flag=1;
-        while(flag)
+        int slow=n;
+        int fast=n;
+        while(fast != 1)
         {
-            sum = 0;
-            while(n > 0)
+            slow=digs(slow);
+            fast=digs(fast);
+            fast=digs(fast);
+            if(slow == fast && fast != 1)
             {
-                d = n%10;
-                n = n/10;
-                sum = sum + pow(d,2);
+                return false;
             }
-            n=sum;
-            if(sum < 10) flag=0;
         }
-        if(sum == 1 || sum == 7) return true;
-        return false;
+        return true;
     }
 };
