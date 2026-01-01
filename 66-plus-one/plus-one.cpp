@@ -2,17 +2,34 @@ class Solution {
 public:
     vector<int> plusOne(vector<int>& digits)
     {
-        int carry = 1;
-        for (int i = digits.size() - 1; i >= 0; i--)
+        stack<int> stk;
+        vector<int> ans;
+        for(int i=0;i<digits.size();i++)
         {
-            int sum = digits[i] + carry;
-            digits[i] = sum % 10;
-            carry = sum / 10;
+            stk.push(digits[i]);
         }
-        if (carry)
+        int flag=1;
+        while(!stk.empty())
         {
-            digits.insert(digits.begin(), 1);
+            int temp = stk.top();
+            stk.pop();
+            if(flag == 1)
+            {
+                temp=temp+1;
+                flag=0;
+            }
+            if(temp == 10)
+            {
+                temp=0;
+                flag=1;
+            }
+            ans.push_back(temp);
         }
-        return digits;
+        if(flag==1)
+        {
+            ans.push_back(1);
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
     }
 };
