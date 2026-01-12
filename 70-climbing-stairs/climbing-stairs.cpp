@@ -2,17 +2,18 @@ class Solution {
 public:
     int climbStairs(int n)
     {
-        int dp[46];
-        for(int i=0;i<46;i++)
-            dp[i]=-1;
+        if(n<=2)
+            return n;
+
+        int low=1;
+        int high=2;
         
-        dp[0]=0;
-        dp[1]=1;
-        dp[2]=2;
         for(int i=3;i<=n;i++)
         {
-            dp[i]=dp[i-1]+dp[i-2];
+            int temp=high;
+            high=low+high;
+            low=temp; 
         }
-        return dp[n];
+        return high;
     }
 };
