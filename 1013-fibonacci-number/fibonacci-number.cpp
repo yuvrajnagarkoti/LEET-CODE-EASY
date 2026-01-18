@@ -1,21 +1,17 @@
-class Solution
-{
+class Solution {
 public:
     int fib(int n)
     {
         if(n <= 1)
             return n;
-        int f=1;
-        int s=1;
-        int sum;
-        n=n-2;
-        while( n > 0)
+        int prev=0;
+        int cur=1;
+        for(int i=2;i<=n;i++)
         {
-            sum = f + s;
-            f = s;
-            s = sum;
-            n--;
+            int temp = cur;
+            cur = cur + prev;
+            prev = temp;
         }
-        return s;
+        return cur;
     }
 };
