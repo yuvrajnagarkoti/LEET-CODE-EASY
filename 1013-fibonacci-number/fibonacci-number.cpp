@@ -1,17 +1,18 @@
-class Solution {
+class Solution
+{
 public:
+    int rec(int i)
+    {
+        if(i == 0)
+            return 0;
+        if(i==1)
+            return 1;
+        
+        return rec(i-1)+rec(i-2);
+    }
     int fib(int n)
     {
-        if(n <= 1)
-            return n;
-        int prev=0;
-        int cur=1;
-        for(int i=2;i<=n;i++)
-        {
-            int temp = cur;
-            cur = cur + prev;
-            prev = temp;
-        }
-        return cur;
+        //memset(f,0,f.end());
+        return rec(n);
     }
 };
