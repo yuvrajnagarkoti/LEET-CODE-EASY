@@ -1,18 +1,21 @@
 class Solution
 {
-public:
+    
+    vector<int> dp = vector<int> (31,-1);
+    public:
     int rec(int i)
     {
-        if(i == 0)
-            return 0;
-        if(i==1)
-            return 1;
+        if( dp[i] != -1)
+            return dp[i];
         
-        return rec(i-1)+rec(i-2);
+        return dp[i] = rec(i-1)+rec(i-2);
     }
+
     int fib(int n)
     {
-        //memset(f,0,f.end());
+        fill(dp.begin(), dp.end(), -1);
+        dp[0]=0;
+        dp[1]=1;
         return rec(n);
     }
 };
