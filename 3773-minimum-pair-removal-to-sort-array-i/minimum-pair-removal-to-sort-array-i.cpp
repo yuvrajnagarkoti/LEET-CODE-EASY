@@ -18,18 +18,8 @@ public:
                     pointer = i;
                 }
             }
-
-            nums[pointer] = sum;
-            nums[pointer - 1] = 0;
-
-            vector<int> temp;
-            for(int i = 0; i < pointer - 1; i++)
-                temp.push_back(nums[i]);
-
-            for(int i = pointer; i < nums.size(); i++)
-                temp.push_back(nums[i]);
-
-            nums = temp;
+            nums[pointer-1]=sum;
+            nums.erase(nums.begin() + pointer);
             ans++;
         }
         return ans;
