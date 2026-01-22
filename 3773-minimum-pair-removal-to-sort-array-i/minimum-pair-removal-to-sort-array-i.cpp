@@ -1,30 +1,37 @@
-class Solution
-{
+class Solution {
 public:
     int minimumPairRemoval(vector<int>& nums)
     {
-        int i,k,count=0,n=nums.size();
-        while ( !is_sorted(nums.begin(),nums.end()) )
+        int ans = 0;
+
+        while(!is_sorted(nums.begin(), nums.end()))
         {
-            int temp=-1;
-            int minsum = INT_MAX;
-            for(i=0 ; i<n-1; i++)
+            int sum = nums[0] + nums[1];
+            int pointer = 1;
+
+            for(int i = 2; i < nums.size(); i++)
             {
-                if(minsum  > (nums[i] + nums[i+1]) )
+                int s = nums[i] + nums[i-1];
+                if(sum > s)
                 {
-                    minsum = nums[i]+nums[i+1];
-                    temp = i;
+                    sum = s;
+                    pointer = i;
                 }
             }
-            nums[temp]=minsum;
-            for(k=temp+1 ; k<n-1 ; k++)
-            {
-                nums[k] = nums[k+1];
-            }
-            nums.pop_back();
-            n--;
-            count++;
+
+            nums[pointer] = sum;
+            nums[pointer - 1] = 0;
+
+            vector<int> temp;
+            for(int i = 0; i < pointer - 1; i++)
+                temp.push_back(nums[i]);
+
+            for(int i = pointer; i < nums.size(); i++)
+                temp.push_back(nums[i]);
+
+            nums = temp;
+            ans++;
         }
-        return count;
+        return ans;
     }
 };
