@@ -9,39 +9,25 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution 
-{
+class Solution {
 public:
-
-    void inorder(TreeNode *root,vector<int> &dfs)
+    int sum=0;
+    void findSum(TreeNode* root, int low, int high)
     {
-        if(root == NULL)
+        if(!root)
+        {
             return;
-        
-        inorder(root->left,dfs);
-        dfs.push_back(root->val);
-        inorder(root->right,dfs);
+        }
+        if(root->val>=low && root->val<=high)
+        {
+            sum+=root->val;
+        }
+        findSum(root->left, low, high);
+        findSum(root->right, low, high);
     }
     int rangeSumBST(TreeNode* root, int low, int high)
     {
-        vector<int> dfs;
-        inorder(root,dfs);
-
-        int i=0;
-        int j=dfs.size()-1;
-        while(dfs[i] != low)
-        {
-            i++;
-        }
-        while(dfs[j] != high)
-        {
-            j--;
-        }
-        int sum=0;
-        for( ;i<=j;i++)
-        {
-            sum += dfs[i];
-        }
+        findSum(root, low, high);
         return sum;
     }
 };
