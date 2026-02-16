@@ -25,12 +25,10 @@ class Solution
     {
         vector<int> dfs;
         inorder(root,dfs);
-
-        sort(dfs.begin(),dfs.end());
         int ans=INT_MAX;
         for(int i=1;i<dfs.size();i++)
         {
-            ans = min( ans, abs(dfs[i]-dfs[i-1]) );
+            ans = min( ans, dfs[i]-dfs[i-1]);
         }
         return ans;
     }
