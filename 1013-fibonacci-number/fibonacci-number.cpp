@@ -1,21 +1,19 @@
-class Solution
-{
-    public:
+class Solution {
+public:
     int fib(int n)
     {
-        int prev=1;
-        int cur=2;
-        if( n==0)
+        if(n==0)
             return 0;
-        if( n <= 2)
+        if(n<=2)
             return 1;
-
-        for(int i=3;i<n;i++)
+        vector<int> dp(n+1,-1);
+        dp[0]=0;
+        dp[1]=1;
+        dp[2]=1;
+        for(int i=3;i<=n;i++)
         {
-            int next = prev + cur;
-            prev = cur;
-            cur = next;
+            dp[i] = dp[i-1]+dp[i-2];
         }
-        return cur;
+        return dp[n];
     }
 };
