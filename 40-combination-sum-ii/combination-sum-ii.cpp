@@ -1,13 +1,13 @@
 class Solution
 {
 public:
-    set<vector<int>> st;
+    vector<vector<int>> ans;
 
     void rec(vector<int>& candidates, int target,vector<int> temp, int idx)
     {
         if(target == 0)
         {
-            st.insert(temp);
+            ans.push_back(temp);
             return;
         }
         if(target < 0)
@@ -31,6 +31,6 @@ public:
     {
         sort(candidates.begin(), candidates.end());
         rec(candidates, target, {}, 0);
-        return vector<vector<int>>(st.begin(), st.end());
+        return ans;
     }
 };
