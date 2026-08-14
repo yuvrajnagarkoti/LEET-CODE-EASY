@@ -2,19 +2,24 @@ class Solution {
 public:
     int countPartitions(vector<int>& nums)
     {
-        int right=0;
-        for(int i=0;i<nums.size();i++)
+        int n=nums.size();
+        vector<int> postfix(n,0);
+        int temp=0;
+        for(int i=n-1;i>=0;i--)
         {
-            right=right+nums[i];
+            temp += nums[i];
+            postfix[i]= temp;
         }
+
+        temp=0;
         int count=0;
-        int left=0;
-        for(int i=0;i<nums.size()-1;i++)
+        for(int i=0;i<n-1;i++)
         {
-            right=right-nums[i];
-            left=left+nums[i];
-            if(abs(left-right)%2 == 0)
+            temp += nums[i];
+            if((temp-postfix[i+1])%2 == 0)
+            {
                 count++;
+            }
         }
         return count;
     }
