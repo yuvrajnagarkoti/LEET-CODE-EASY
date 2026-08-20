@@ -1,32 +1,30 @@
-class Solution
+class Solution 
 {
 public:
-    static int digs(int n)
+
+    int sumofdigits(int n)
     {
-        int sum=0;
+        int temp = 0;
         while(n>0)
         {
             int t=n%10;
-            sum=sum + (t*t);
-            n=n/10;
+            n = n/10;
+            temp += t*t;
         }
-        return sum;
+        return temp;
     }
 
     bool isHappy(int n)
     {
-        int slow=n;
-        int fast=n;
-        while(fast != 1)
+        unordered_map<int,int> mpp;
+        while(mpp.find(n) == mpp.end() && n != 1)
         {
-            slow=digs(slow);
-            fast=digs(fast);
-            fast=digs(fast);
-            if(slow == fast && fast != 1)
-            {
-                return false;
-            }
+            mpp[n] = 1;
+            n = sumofdigits(n);
         }
-        return true;
+
+        if(n==1)
+            return true;
+        return false;
     }
 };
