@@ -1,21 +1,18 @@
-class Solution
-{
+class Solution {
 public:
-    int removeDuplicates(vector<int>& nums) 
+    int removeDuplicates(vector<int>& nums)
     {
-        int low=0,high=1;
-        int n=nums.size();
-        while( high < n)
+        int k=0;
+        set<int> st;
+        for(int i=0;i<nums.size();i++)
         {
-            if(nums[low] == nums[high])
+            if(st.find(nums[i]) == st.end())
             {
-                high++;
-            }
-            else
-            {
-                nums[++low] = nums[high];
+                st.insert(nums[i]);
+                nums[k] = nums[i];
+                k++;
             }
         }
-        return low+1;
+        return k;
     }
 };
