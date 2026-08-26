@@ -1,20 +1,31 @@
-class Solution {
-public:
+class Solution
+{
+
+    public:
+    string common(string ans,string s)
+    {
+        int i=0;
+        while(i<ans.length() && i<s.length())
+        {
+            if(ans[i] != s[i])
+                break;
+            i++;
+        }
+
+        if(i>=ans.length())
+            return ans;
+        
+        return ans.substr(0,i);
+    }
     string longestCommonPrefix(vector<string>& strs)
     {
-        sort(strs.begin(),strs.end());
-        string s1 = strs[0];
-        string s2 = strs[strs.size()-1];
-        string ans="";
-        int i=0;
-        while( i<s1.length() && i<s2.length())
+        string ans = strs[0];
+        int n=strs.size();
+        for(int i=0;i<n;i++)
         {
-            if(s1[i]!=s2[i])
-            {
-                break;
-            }
-            ans+=s1[i++];
+            ans = common(ans,strs[i]);
         }
+
         return ans;
     }
 };
