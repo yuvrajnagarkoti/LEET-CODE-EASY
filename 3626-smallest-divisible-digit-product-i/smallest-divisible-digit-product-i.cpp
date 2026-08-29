@@ -19,7 +19,7 @@ public:
         for(ans=n;ans<=n+10;ans++)
         {
             if(proofd(ans)%t == 0)
-                return ans;
+                break;
         }
         return ans;
     }
