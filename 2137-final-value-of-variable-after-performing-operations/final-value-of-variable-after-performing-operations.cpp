@@ -1,15 +1,15 @@
 class Solution {
 public:
-    int finalValueAfterOperations(vector<string>& operations) 
+    int finalValueAfterOperations(vector<string>& op)
     {
-        int x=0;
-        for(int i=0;i<operations.size();i++)
+        int ans =0;
+        for(int i=0;i<op.size();i++)
         {
-            if(operations[i] == "X++" ||  operations[i] == "++X")
-                x++;
+            if(op[i] == "X++" || op[i] == "++X")
+                ans++;
             else
-                x--;
+                ans--;
         }
-        return x;
+        return ans;
     }
 };
