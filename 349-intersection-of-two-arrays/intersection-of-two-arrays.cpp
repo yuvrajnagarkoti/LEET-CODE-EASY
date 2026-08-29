@@ -2,19 +2,19 @@ class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2)
     {
-        map<int,int> mpp;
-        int n=nums1.size(),m=nums2.size();
-        for(int i=0;i<n;i++)
-        {
-            mpp[nums1[i]]++;
-        }
+        int count[1001] = {0};
         vector<int> ans;
-        for(int i=0;i<m;i++)
+        for(int i=0;i<nums1.size();i++)
         {
-            if(mpp.find(nums2[i])!=mpp.end() && mpp[nums2[i]] > 0)
+            count[nums1[i]] = 1;
+        }
+
+        for(int i=0;i<nums2.size();i++)
+        {
+            if(count[nums2[i]] == 1)
             {
                 ans.push_back(nums2[i]);
-                mpp.erase(nums2[i]);
+                count[nums2[i]] = 0;
             }
         }
 
