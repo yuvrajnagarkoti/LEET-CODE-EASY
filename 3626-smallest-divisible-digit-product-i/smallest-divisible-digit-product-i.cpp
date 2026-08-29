@@ -4,7 +4,8 @@ public:
 
     int proofd(int n)
     {
-        int ans=1;
+        int ans=n%10;
+        n=n/10;
         while(n>0)
         {
             ans = ans*(n%10);
