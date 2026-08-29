@@ -1,28 +1,25 @@
-class Solution
+class Solution 
 {
-    public:
-    bool check(int i,int t)
-    {
-        int sum=1;
-        while(i>0)
-        {
-            int temp = i%10;
-            sum = sum * temp;
-            i=i/10;
-        }
-        if(sum%t == 0) return true;
-        return false;
-    }
+public:
 
+    int proofd(int n)
+    {
+        int ans=1;
+        while(n>0)
+        {
+            ans = ans*(n%10);
+            n = n/10;
+        }
+        return ans;
+    }
     int smallestNumber(int n, int t)
     {
-        int i=n;
-        while(true)
+        int ans=n;
+        for(ans=n;ans<=n+10;ans++)
         {
-            if(check(i,t))
-                return i;
-            i++;
+            if(proofd(ans)%t == 0)
+                return ans;
         }
-        return n;
+        return ans;
     }
 };
