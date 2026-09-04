@@ -14,10 +14,8 @@ class Solution
     public:
     bool dfs(TreeNode *p,TreeNode *q)
     {
-        if(p == NULL && q== NULL)
-            return true;
         if(p == NULL || q== NULL)
-            return false;
+            return p==q;
         
         return  p->val == q->val && dfs(p->left,q->left) && dfs(p->right,q->right);
     }
