@@ -19,16 +19,7 @@ class Solution
         if(p == NULL || q== NULL)
             return false;
         
-        if(p->val != q->val)
-            return false;
-        
-        bool t1 = dfs(p->left,q->left);
-        bool t2 = dfs(p->right,q->right);
-
-        if(t1==false || t2==false)
-            return false;
-
-        return true;
+        return  p->val == q->val && dfs(p->left,q->left) && dfs(p->right,q->right);
     }
 
     bool isSameTree(TreeNode* p, TreeNode* q)
