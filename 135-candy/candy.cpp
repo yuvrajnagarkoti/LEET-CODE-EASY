@@ -1,34 +1,37 @@
 class Solution {
 public:
-    int candy(vector<int>& ratings)
-    {
-        int n = ratings.size();
-        int count = 0;
-        vector<int> temp(n, 1);
+    int candy(vector<int>& ratings) {
+       int n = ratings.size();
+        int totalCandies = n;
+        int i = 1;
 
-        // Left to Right
-        for(int i = 1; i < n; i++)
-        {
-            if(ratings[i] > ratings[i-1])
-            {
-                temp[i] = temp[i-1] + 1;
+        while (i < n) {
+            if (ratings[i] == ratings[i - 1]) {
+                i++;
+                continue;
             }
-        }
 
-        // Right to Left
-        for(int i = n-2; i >= 0; i--)
-        {
-            if(ratings[i] > ratings[i+1])
-            {
-                temp[i] = max(temp[i], temp[i+1] + 1);
+            int currentPeak = 0;
+            while (i < n && ratings[i] > ratings[i - 1]) {
+                currentPeak++;
+                totalCandies += currentPeak;
+                i++;
             }
+
+            if (i == n) {
+                return totalCandies;
+            }
+
+            int currentValley = 0;
+            while (i < n && ratings[i] < ratings[i - 1]) {
+                currentValley++;
+                totalCandies += currentValley;
+                i++;
+            }
+
+            totalCandies -= min(currentPeak, currentValley);
         }
 
-        for(int i = 0; i < n; i++)
-        {
-            count += temp[i];
-        }
-
-        return count;
+        return totalCandies;        
     }
 };
