@@ -1,28 +1,25 @@
 class Solution {
     public int maximumPopulation(int[][] logs)
     {
-        int []count = new int[1001];
-        int n=logs.length;
-        for(int i=0;i<n;i++)
+        int []count = new int[2051];
+        for(int i=0;i<logs.length;i++)
         {
             int low=logs[i][0];
-            int high=logs[i][1];
-            for(int j=low;j<high;j++)
-            {
-                count[j-1950]++;
-            }
+            int high=logs[i][1]-1;
+            count[low]++;
+            count[high+1]--;
         }
-        int mval=count[0];
-        int year=1950;
-        for(int i=0;i<1001;i++)
+        int year=1950,val=0;
+        int psum=0;
+        for(int i=1950;i<=2050;i++)
         {
-            if(count[i] > mval)
+            psum += count[i];
+            if(psum > val)
             {
-                year=1950+i;
-                mval = count[i];
+                year=i;
+                val=psum;
             }
         }
-
         return year;
     }
 }
