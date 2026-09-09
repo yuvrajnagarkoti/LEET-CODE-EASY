@@ -1,25 +1,39 @@
 class Solution {
+
+    static int compare(int[] a, int[] b)
+    {
+        if(a[0] != b[0])
+            return Integer.compare(a[0], b[0]);
+
+        return Integer.compare(a[1], b[1]);
+    }
     public int maximumPopulation(int[][] logs)
     {
-        int []count = new int[2051];
-        for(int i=0;i<logs.length;i++)
+        int n=logs.length;
+        int [][]years = new int[n*2][2];
+        int c=0;
+        for(int i=0;i<n;i++)
         {
-            int low=logs[i][0];
-            int high=logs[i][1]-1;
-            count[low]++;
-            count[high+1]--;
+            years[c][0] = logs[i][0];
+            years[c][1] = 1;
+            c++;
+            years[c][0] = logs[i][1];
+            years[c][1] = -1;
+            c++;
         }
-        int year=1950,val=0;
-        int psum=0;
-        for(int i=1950;i<=2050;i++)
+        Arrays.sort(years,Solution::compare);
+        int presum=0;
+        int y=1950;
+        int p=0;
+        for(int i=0;i<years.length;i++)
         {
-            psum += count[i];
-            if(psum > val)
+            presum += years[i][1];
+            if(presum > p)
             {
-                year=i;
-                val=psum;
+                p=presum;
+                y=years[i][0];
             }
         }
-        return year;
+        return y;
     }
 }
