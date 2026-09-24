@@ -3,25 +3,24 @@ public:
     vector<int> plusOne(vector<int>& digits)
     {
         int flag=1;
-        vector<int> ans;
-        for(int i=digits.size()-1;i>=0;i--)
+        int i=digits.size()-1;
+        while(flag && i>=0)
         {
-            int temp = digits[i];
-            if(flag==1)
+            if(digits[i] == 9)
             {
-                temp++;
-                flag=0;     
-            }
-            if(temp == 10)
-            {
-                temp=0;
+                digits[i] = 0;
                 flag=1;
             }
-            ans.push_back(temp);
+            else
+            {
+                digits[i]++;
+                flag=0;
+            }
+            i--;
         }
-        if(flag==1)
-            ans.push_back(1);
-        reverse(ans.begin(),ans.end());
-        return ans;
+        if(flag)
+            digits.insert(digits.begin(),1);
+        
+        return digits;
     }
 };
