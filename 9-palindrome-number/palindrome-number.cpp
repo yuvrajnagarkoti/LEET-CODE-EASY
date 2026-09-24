@@ -2,15 +2,23 @@ class Solution {
 public:
     bool isPalindrome(int x)
     {
-        long long temp=x,n=0;
-        while(temp > 0)
+        if (x < 0)
+            return false;
+
+        string s = "";
+        while (x > 0)
         {
-            int t = temp%10;
-            temp=temp/10;
-            n = n*10 + t;
+            int temp = x % 10;
+            s += char('0' + temp);  // FIXED
+            x /= 10;
         }
-        if(( long long)x == n )
-            return true;
-        return false;
+
+        for (int i = 0, j = s.length() - 1; i < j; i++, j--)
+        {
+            if (s[i] != s[j])
+                return false;
+        }
+
+        return true;
     }
 };
