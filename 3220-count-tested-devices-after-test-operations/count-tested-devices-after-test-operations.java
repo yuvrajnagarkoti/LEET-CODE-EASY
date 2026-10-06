@@ -4,14 +4,9 @@ class Solution {
         int ans=0;
         for(int i=0;i<battery.length;i++)
         {
-            if(battery[i] > 0)
+            if(battery[i]-ans > 0)
             {
                 ans++;
-                for(int j=i;j<battery.length;j++)
-                {
-                    if(battery[j] > 0)
-                        battery[j]--;
-                }
             }
         }
 
