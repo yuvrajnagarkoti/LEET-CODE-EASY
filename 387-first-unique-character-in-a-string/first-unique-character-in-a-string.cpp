@@ -1,20 +1,18 @@
-class Solution
-{
+class Solution {
 public:
     int firstUniqChar(string s)
     {
-        int i,j,count[26]={0};
-        for(i=0;i<s.size();i++)
+        map<char,int> mpp;
+        for(int i=0;i<s.length();i++)
         {
-            count[s[i] - 'a']++;
+            mpp[s[i]]++;
         }
-        for(i=0;i<s.size();i++)
+        for(int i=0;i<s.length();i++)
         {
-            if(count[s[i] - 'a'] == 1)
-            {
+            if(mpp[s[i]] == 1)
                 return i;
-            }
         }
+
         return -1;
     }
 };
