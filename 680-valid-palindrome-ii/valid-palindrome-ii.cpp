@@ -1,33 +1,53 @@
+
 class Solution {
 public:
-    bool check(string &s, int i, int j)
-    {
-        while(i < j)
-        {
-            if(s[i] != s[j])
-                return false;
-
-            i++;
-            j--;
-        }
-        return true;
-    }
-
     bool validPalindrome(string s)
     {
         int i = 0, j = s.length() - 1;
+        int c1 = 0, c2 = 0;
 
         while(i < j)
         {
             if(s[i] != s[j])
             {
-                return check(s, i + 1, j) || check(s, i, j - 1);
+                if(c1 == 0)
+                    i++;
+                else
+                {
+                    i++;
+                    j--;
+                }
+                c1++;
             }
-
-            i++;
-            j--;
+            else
+            {
+                i++;
+                j--;
+            }
         }
 
-        return true;
+        i = 0, j = s.length() - 1;
+
+        while(i < j)
+        {
+            if(s[i] != s[j])
+            {
+                if(c2 == 0)
+                    j--;
+                else
+                {
+                    i++;
+                    j--;
+                }
+                c2++;
+            }
+            else
+            {
+                i++;
+                j--;
+            }
+        }
+
+        return min(c1, c2) <= 1;
     }
 };
