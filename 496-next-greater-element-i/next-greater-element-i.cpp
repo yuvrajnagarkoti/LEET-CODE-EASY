@@ -2,23 +2,29 @@ class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2)
     {
-        vector<int> ans;
-        for(int i=0;i<nums1.size();i++)
+        unordered_map<int,int> mpp;
+        vector<int> ans(nums1.size(),0);
+        for(int i=0;i<nums2.size();i++)
         {
-            int j=find(nums2.begin(),nums2.end(),nums1[i])-nums2.begin();
-            bool found=false;
-            for(int k=j;k<nums2.size();k++)
+            for(int j=i+1;j<nums2.size();j++)
             {
-                if(nums1[i] < nums2[k])
+                if(nums2[j] > nums2[i])
                 {
-                    found=true;
-                    ans.push_back(nums2[k]);
+                    mpp[nums2[i]] = nums2[j];
                     break;
                 }
             }
-            if(!found)
-                ans.push_back(-1);
+            if(mpp.find(nums2[i]) == mpp.end())
+            {
+                mpp[nums2[i]]=-1;
+            }
         }
+
+        for(int i=0;i<nums1.size();i++)
+        {
+            ans[i] = mpp[nums1[i]];
+        }
+
         return ans;
     }
 };
