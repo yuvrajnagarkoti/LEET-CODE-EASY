@@ -7,11 +7,12 @@ public:
         {
             if(mpp.find(nums[i]) != mpp.end())
             {
-                if(i-mpp[nums[i]] <= k)
+                if(abs(mpp[nums[i]]-i) <= k )
                     return true;
             }
             mpp[nums[i]]=i;
-        }
+        }     
+
         return false;
     }
 };
